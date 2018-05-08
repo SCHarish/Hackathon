@@ -1,0 +1,266 @@
+﻿@model FeedbackAPP.Models.User
+@using System.Configuration;
+@{
+   
+    Layout = null;
+    String url = ConfigurationManager.AppSettings["getquestions"];
+    String url1 = ConfigurationManager.AppSettings["feedbackupdate"];
+
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href='~/Content/bootstrap.css'>
+    <link rel="stylesheet" href='~/Content/font-awesome.css'>
+<script src="~/scripts/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="~/Content/animate.css" />
+    
+
+
+    <script>
+
+        $(document).ready(function () {
+            var url = "@Html.Raw(HttpUtility.JavaScriptStringEncode(url))";
+
+            $.ajax({
+                url: url,
+                crossOrgin: true,	// use jsonp for cross origin request
+                dataType: 'json',
+                type: 'GET',
+                success: function (data) {
+                    //YOUR CODE FOR AJAX SUCCESS
+                    //console.log(data);
+                    //sQ.html("<br>"+data.PIN+"<br>"+data.Name+"<br>"+data.Gender);
+                    //alert(text);
+                    //alert("success");
+                    //alert(data);
+                    console.log(data[0].Question);
+                    document.getElementById('l1').innerHTML = data[0].Question;
+                    document.getElementById('l2').innerHTML = data[1].Question;
+                    document.getElementById('l3').innerHTML = data[2].Question;
+                    document.getElementById('l4').innerHTML = data[3].Question;
+                    document.getElementById('l5').innerHTML = data[4].Question;
+                    size = data.length;
+
+                    /*   for (var i = 1; i < size + 1; i++) {
+                           document.getElementById("d1").innerHTML += "<b>QUESTION " + i + "</b><input id=\'" + i + "\' class = \"form-control \" type=\"text\" value=\'" + data[i - 1].Question + "\'><br/>";
+   
+                       }*/
+                    //f1(size);
+                    //  alert(size);
+
+                }, error: function (err) {
+                    alert("cannot be displayed");
+                    // sQ.html("<br>"+pin+"<br>"+name);
+                    // sQ.html(text);
+                    console.log("error");
+                }
+            });
+        });
+            function f1(id)
+            {
+               // var id1=ParseInt(id);
+               // alert(id);
+                var id1 = parseInt(id, 10);
+                var mod = id1 % 3;
+
+                var e1 = document.getElementById(id);
+                e1.removeAttribute('class', 'blur');
+
+
+                if (mod == 1)
+                {
+                    var next = id1 + 1;
+                    var next1 = next + 1;
+
+                    next.toString();
+                    next1.toString();
+                    var e = document.getElementById(next);
+                    e.setAttribute('class', 'blur');
+                    var e = document.getElementById(next1);
+                    e.setAttribute('class', 'blur');
+                }
+
+                if (mod == 0) {
+                    var next = id1 - 1;
+                    var prev = next - 1;
+
+                    next.toString();
+                    prev.toString();
+                    var e = document.getElementById(next);
+                    e.setAttribute('class', 'blur');
+                    var e1 = document.getElementById(prev);
+                    e1.setAttribute('class', 'blur');
+
+                }
+                if (mod == 2) {
+                    var next = id1 + 1;
+                    var prev = id1 - 1;
+
+                    next.toString();
+                    prev.toString();
+
+                    var e = document.getElementById(next);
+                    e.setAttribute('class', 'blur');
+                    var e1 = document.getElementById(prev);
+                    e1.setAttribute('class', 'blur');
+                }
+
+
+
+
+               //document.getElementById(id+1).style.color = "yellow";
+                //alert('happy');
+
+            }
+            function work(id)
+            {
+
+                alert(id);
+                var el = document.getElementById(id);
+               // document.getElementById(id).style.display = 'blur';
+               // document.getElementById(id).style.color = "yellow";
+                el.style.display = 'none';
+                //document.getElementById(id).onblur();
+            }
+
+
+    </script>
+
+</head>
+<style>
+    input[type=radio] {
+        display: none;
+        margin: 10px;
+    }
+
+    .democlass {
+        color: black;
+    }
+
+    .whi {
+        color: White;
+    }
+
+    .square {
+        width: 50vw;
+        height: 50vw;
+    }
+
+    .formlabel {
+        float: left;
+        width: 12em;
+    }
+
+    .smile {
+        padding-left: 20px;
+    }
+
+    img1 {
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+    }
+
+
+
+    .hide {
+        color: red;
+    }
+
+    .blur {
+        filter: blur(5px);
+    }
+</style>
+
+
+
+<body style="background-color:#E6E6FA">
+   <h2></h2>
+    <div class="heading">
+        <h1> <center>Aravind Eye Hospital </center> </h1>
+        <h3> <center>Feedback</center> </h3><br />
+    </div>
+    <div class="container">
+
+    @using (Html.BeginForm())
+    {
+
+        <div class="form-horizontal" role="form" id="myForm" style="border:solid black 0px">
+            <div class="form-group">
+                <label id="l1" class="control-label col-sm-5" for="stf" style="font-size:18px">Staff behaviour</label>
+                <div class="col-sm-13">
+                    <label><img src="~/Content/1.png" hspace="20" width="42" height="60" name="r1" id="1" type="radio" onclick="f1(id)"></img>@Html.RadioButtonFor(m => m.ans1, "a")</label>
+                    <label><img src="~/Content/2.png" hspace="20" width="42" height="60" name="r1" id="2" type="radio" onclick="f1(id)"></img>@Html.RadioButtonFor(m => m.ans1, "b")</label>
+                    <label> <img src="~/Content/3.png" hspace="20" width="42" height="60" name="r1" id="3" type="radio" onclick="f1(id)"></img>@Html.RadioButtonFor(m => m.ans1, "c") </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <label id="l2" class="control-label col-sm-5" for="stf" style="font-size:18px">Response Time</label>
+                <div class="col-sm-12">
+
+                    <label><img src="~/Content/1.png" hspace="20" width="42" height="60" name="r1" id="4" type="radio" onclick="f1(id)"></img>@Html.RadioButtonFor(m => m.ans2, "a")</label>
+
+                    <label><img src="~/Content/2.png" hspace="20" width="42" height="60" name="r1" id="5" type="radio" onclick="f1(id)"></img>@Html.RadioButtonFor(m => m.ans2, "b")</label>
+                    <label><img src="~/Content/3.png" hspace="20" width="42" height="60" name="r1" id="6" type="radio" onclick="f1(id)"></img>@Html.RadioButtonFor(m => m.ans2, "c")</label>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+
+                <label id="l3" class="control-label col-sm-5" for="stf" style="font-size:18px">Environment</label>
+                <div class="col-sm-12">
+
+                    <label> <img src="~/Content/1.png" hspace="20" width="42" height="60" name="r1" id="7" type="radio" onclick="f1(id)"></img>@Html.RadioButtonFor(m => m.ans3, "a")</label>
+
+                    <label><img src="~/Content/2.png" hspace="20" width="42" height="60" name="r1" id="8" type="radio" onclick="f1(id)"></img>@Html.RadioButtonFor(m => m.ans3, "b")</label>
+                    <label><img src="~/Content/3.png" hspace="20" width="42" height="60" name="r1" id="9" type="radio" onclick=f1(id);></img>@Html.RadioButtonFor(m => m.ans3, "c")</label>
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label id="l4" class="control-label col-sm-5" for="stf" style="font-size:18px">Doctor Consultant</label>
+                <div class="col-sm-12">
+
+                    <label><img src="~/Content/1.png" hspace="20" width="42" height="60" name="r1" id="10" type="radio" onclick=f1(id);></img>@Html.RadioButtonFor(m => m.ans4, "a")</label>
+
+                    <label> <img src="~/Content/2.png" hspace="20" width="42" height="60" name="r1" id="11" type="radio" onclick=f1(id);></img>@Html.RadioButtonFor(m => m.ans4, "b")</label>
+                    <label><img src="~/Content/3.png" hspace="20" width="42" height="60" name="r1" id="12" type="radio" onclick=f1(id);></img>@Html.RadioButtonFor(m => m.ans4, "c")</label>
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label id="l5" class="control-label col-sm-5" for="stf" style="font-size:18px">Staff Service</label>
+                <div class="col-sm-12">
+
+                    <label> <img src="~/Content/1.png" hspace="20" width="42" height="60" name="r1" id="13" type="radio" onclick=f1(id);></img>@Html.RadioButtonFor(m => m.ans5, "a")</label>
+
+                    <label><img src="~/Content/2.png" hspace="20" width="42" height="60" name="r1" id="14" type="radio" onclick=f1(id);></img>@Html.RadioButtonFor(m => m.ans5, "b")</label>
+                    <label><img src="~/Content/3.png" hspace="20" width="42" height="60" name="r1" id="15" type="radio" onclick=f1(id);></img>@Html.RadioButtonFor(m => m.ans5, "c")</label>
+                </div>
+            </div>
+
+
+        
+        <div class="form-group">
+            <label id="l6" class="control-label col-sm-5" for="stf" style="font-size:18px">Remarks</label>
+            <div class="col-xs-6">
+                @Html.TextAreaFor(m => m.remarks, new { cols = 25, rows = 4, @class = "form-control" })
+            </div>
+        </div>
+   
+            <div class="form-group">
+
+                <div class="col-sm-offset-5 col-sm-12">
+                    <button type="submit" class="btn btn-primary" name="command" value="submit">SUBMIT</button>
+                </div>
+                </div>
+            </div>    
+    }
+    </div>
+
+</body>
+</html>

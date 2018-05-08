@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model2StoreContainer" CdmEntityContainer="Entities3">
+    <EntitySetMapping Name="Zones">
+      <EntityTypeMapping TypeName="Model2.Zone">
+        <MappingFragment StoreEntitySet="Zones">
+          <ScalarProperty Name="Zone_ID" ColumnName="Zone_ID" />
+          <ScalarProperty Name="Zone_Name" ColumnName="Zone_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

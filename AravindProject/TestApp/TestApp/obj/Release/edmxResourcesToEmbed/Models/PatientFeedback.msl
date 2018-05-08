@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Entities1">
+    <EntitySetMapping Name="Feeds">
+      <EntityTypeMapping TypeName="Model1.Feed">
+        <MappingFragment StoreEntitySet="Feeds">
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Dt" ColumnName="Dt" />
+          <ScalarProperty Name="Reasons" ColumnName="Reasons" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Patient_feeds" ColumnName="Patient_feeds" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MRNO" ColumnName="MRNO" />
+          <ScalarProperty Name="sno" ColumnName="sno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Feeds_BackUp">
+      <EntityTypeMapping TypeName="Model1.Feeds_BackUp">
+        <MappingFragment StoreEntitySet="Feeds_BackUp">
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Reasons" ColumnName="Reasons" />
+          <ScalarProperty Name="Dt" ColumnName="Dt" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Patient_feeds" ColumnName="Patient_feeds" />
+          <ScalarProperty Name="MRNO" ColumnName="MRNO" />
+          <ScalarProperty Name="sno" ColumnName="sno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

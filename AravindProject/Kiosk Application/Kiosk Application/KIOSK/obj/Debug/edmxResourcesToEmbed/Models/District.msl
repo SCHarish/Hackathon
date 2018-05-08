@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Entities4">
+    <EntitySetMapping Name="District_Master">
+      <EntityTypeMapping TypeName="Model1.District_Master">
+        <MappingFragment StoreEntitySet="District_Master">
+          <ScalarProperty Name="DISTRICT_CODE" ColumnName="DISTRICT_CODE" />
+          <ScalarProperty Name="DISTRICT_NAME" ColumnName="DISTRICT_NAME" />
+          <ScalarProperty Name="STATE_CODE" ColumnName="STATE_CODE" />
+          <ScalarProperty Name="TOTAL_MALE_POPULATION" ColumnName="TOTAL_MALE_POPULATION" />
+          <ScalarProperty Name="TOTAL_FEMALE_POPULATION" ColumnName="TOTAL_FEMALE_POPULATION" />
+          <ScalarProperty Name="PERCENTAGE_OF_TOTAL_MALE_EYE_DEFECT_POPULATION" ColumnName="PERCENTAGE_OF_TOTAL_MALE_EYE_DEFECT_POPULATION" />
+          <ScalarProperty Name="PERCENTAGE_OF_TOTAL_FEMALE_EYE_DEFECT_POPULATION" ColumnName="PERCENTAGE_OF_TOTAL_FEMALE_EYE_DEFECT_POPULATION" />
+          <ScalarProperty Name="GIS_CODE" ColumnName="GIS_CODE" />
+          <ScalarProperty Name="district_grp" ColumnName="district_grp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

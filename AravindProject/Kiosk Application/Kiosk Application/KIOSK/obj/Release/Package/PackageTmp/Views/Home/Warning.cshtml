@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Warning</title>
+    <link rel="stylesheet" href='~/Content/bootstrap.css'>
+    <link rel="stylesheet" href='~/Content/font-awesome.css'>
+    <script>
+    function f1()
+    {
+    var url = '@Url.Action("Sample1", "Home")';
+    window.location.href = url;
+    }
+    </script>
+</head>
+<body>
+    <center>
+        <div>
+            <center><h3 style="padding-top:200px">YOUR FOLLOW UP ENTRY IS REGISTERED...PLEASE GO TO ESCORTING AREA</h3></center>
+           <!-- @Html.ActionLink("BACK", "Sample1", null, new { @id = "b2", @class = "btn btn-primary c4" })-->
+        </div>
+    </center>
+    <script>
+        setTimeout(f1, 5000);
+    </script>
+</body>
+</html>

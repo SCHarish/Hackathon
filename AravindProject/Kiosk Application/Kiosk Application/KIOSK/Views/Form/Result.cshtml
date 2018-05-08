@@ -1,0 +1,54 @@
+﻿@model KIOSK.Models.Otpnumber
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Result</title>
+    <link rel="stylesheet" href='~/Content/bootstrap.css' />
+    <link rel="stylesheet" href='~/Content/jquery-ui.css' />
+   
+   <!--<link rel="stylesheet" href="~/Content/printpreview.css" media="print"/>-->
+    <script>
+    function f1()
+    {
+    var url = '@Url.Action("Sample", "Home")';
+    window.location.href = url;
+    }
+    </script>
+</head>
+<body>
+   
+    <center>
+        <div id="d1">
+            <center><h3> Your OTP is @Model.otp</h3></center> 
+        </div>
+    </center>
+    <center> @Html.ActionLink("BACK", "Sample", "Home", null, new { @id = "b2", @class = "btn btn-primary" })</center>
+    
+    <script>
+        setTimeout(function () {
+            var divElements = document.getElementById('d1').innerHTML;
+
+            //Get the HTML of whole page
+            var oldPage = document.body.innerHTML;
+
+            document.body.innerHTML = divElements;
+            //Print Page
+            var url = '@Url.Action("Sample", "Home")';
+           window.location.href = url;
+            window.print();
+       //     alert("PLEASE COLLECT YOUR OTP AND GO TO PAYMENT COUNTER");
+            document.body.innerHTML = oldPage;
+          
+        }, 2000);
+    
+
+    </script>
+</body>
+</html>

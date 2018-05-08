@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model2" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityType Name="State_Master">
+    <Key>
+      <PropertyRef Name="STATE_CODE" />
+    </Key>
+    <Property Name="STATE_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="STATE_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="COUNTRY_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TOTAL_MALE_POPULATION" Type="Double" />
+    <Property Name="TOTAL_FEMALE_POPULATION" Type="Double" />
+    <Property Name="PERCENTAGE_OF_TOTAL_MALE_EYE_DEFECT_POPULATION" Type="Double" />
+    <Property Name="PERCENTAGE_OF_TOTAL_FEMALE_EYE_DEFECT_POPULATION" Type="Double" />
+    <Property Name="GIS_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="state_grp" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="lang_code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="Entities5" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="State_Master" EntityType="Self.State_Master" />
+  </EntityContainer>
+</Schema>

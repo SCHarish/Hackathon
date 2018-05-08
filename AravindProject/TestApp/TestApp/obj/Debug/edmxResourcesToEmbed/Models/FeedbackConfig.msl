@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ARAVIND_DBModel1StoreContainer" CdmEntityContainer="ARAVIND_DBEntities1">
+    <EntitySetMapping Name="FeedsConfig_Backup">
+      <EntityTypeMapping TypeName="ARAVIND_DBModel1.FeedsConfig_Backup">
+        <MappingFragment StoreEntitySet="FeedsConfig_Backup">
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="qno" ColumnName="qno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeedConfigs">
+      <EntityTypeMapping TypeName="ARAVIND_DBModel1.FeedConfig">
+        <MappingFragment StoreEntitySet="FeedConfig">
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Dt" ColumnName="Dt" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="qno" ColumnName="qno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ARAVIND_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ARAVIND_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="System_Users" EntityType="ARAVIND_DBModel.System_Users" />
+  </EntityContainer>
+  <EntityType Name="System_Users">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Questions_Update" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="View_Results" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="New_Signup" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+</Schema>

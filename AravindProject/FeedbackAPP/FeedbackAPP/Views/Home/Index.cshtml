@@ -1,0 +1,183 @@
+﻿
+
+@{
+
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href='~/Content/bootstrap.css'>
+    <link rel="stylesheet" href='~/Content/font-awesome.css'>
+    <link rel="stylesheet" href="~/scripts/jquery-1.10.2.js" />
+    <link rel="stylesheet" href="~/Content/animate.css" />
+
+
+
+    <script>
+
+
+            function f1(id)
+            {
+               // var id1=ParseInt(id);
+
+                var id1 = parseInt(id, 10);
+                var mod = id1 % 3;
+
+                if (mod == 1)
+                {
+                    var next = id1 + 1;
+                    var next1 = next + 1;
+
+                    next.toString();
+                    next1.toString();
+                    document.getElementById(id).style.color = "Lime";
+                    document.getElementById(next).style.color = "grey";
+                    document.getElementById(next1).style.color = "grey";
+                }
+
+                if (mod == 0) {
+                    var next = id1 - 1;
+                    var prev = next - 1;
+                    // alert(next);
+                    // alert(prev);
+                    next.toString();
+                    prev.toString();
+                    document.getElementById(id).style.color = "red";
+                    document.getElementById(next).style.color = "grey";
+                    document.getElementById(prev).style.color = "grey";
+                }
+                if (mod == 2) {
+                    var next = id1 + 1;
+                    var prev = id1 - 1;
+
+                    next.toString();
+                    prev.toString();
+                    document.getElementById(id).style.color = "yellow";
+                    document.getElementById(next).style.color = "grey";
+                    document.getElementById(prev).style.color = "grey";
+                }
+
+
+
+
+               //document.getElementById(id+1).style.color = "yellow";
+                //alert('happy');
+
+            }
+            function work()
+            {
+                alert('hi');
+            }
+
+    </script>
+
+</head>
+<style>
+    input[type=radio] {
+        display: none;
+        margin: 10px;
+    }
+
+    .democlass {
+        color: black;
+    }
+
+    .whi {
+        color: White;
+    }
+
+    .square {
+        width: 50vw;
+        height: 50vw;
+    }
+
+    .formlabel {
+        float: left;
+        width: 12em;
+    }
+
+    .smile {
+        padding-left: 20px;
+    }
+</style>
+
+
+
+<body style="background-color:#E6E6FA">
+    <div class="heading">
+        <h1> <center>Aravind Eye Hospital </center> </h1>
+        <h3> <center>Feedback</center> </h3><br />
+    </div>
+    <div class="container">
+
+        @using (Html.BeginForm())
+        {
+
+            <div class="form-horizontal" role="form" id="myForm" style="">
+                <div class="form-group">
+                    <label class="control-label col-sm-5" for="stf" style="font-size:18px">Staff behaviour</label>
+                    <div class="col-sm-13" onclick="check()">
+                        <label><img src="~/Pictures/1.png" hspace="20" width="42" height="60" name="r1" id="1" type="radio"></img></label>
+                        <label><img src="~/Pictures/2.png" hspace="20" width="42" height="60" name="r1" id="2" type="radio"></img></label>
+                        <label> <img src="~/Pictures/3.png" hspace="20" width="42" height="60" name="r1" id="3" type="radio"></img></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="control-label col-sm-5" for="stf" style="font-size:18px">Response Time</label>
+                    <div class="col-sm-12">
+
+                        <label> <img src="~/Pictures/1.png" hspace="20" width="42" height="60" name="r1" id="4" type="radio" onclick=f1(id);></img></label>
+
+                        <label><img src="~/Pictures/2.png" hspace="20" width="42" height="60" name="r1" id="5" type="radio" onclick=f1(id);></img></label>
+                        <img src="~/Pictures/3.png" hspace="20" width="42" height="60" name="r1" id="6" type="radio" onclick=f1(id);></img>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="control-label col-sm-5" for="stf" style="font-size:18px">Environment</label>
+                    <div class="col-sm-12">
+
+                        <img src="~/Pictures/1.png" hspace="20" width="42" height="60" name="r1" id="7" type="radio" onclick=f1(id);></img>
+
+                        <img src="~/Pictures/2.png" hspace="20" width="42" height="60" name="r1" id="8" type="radio" onclick=f1(id);></img>
+                        <img src="~/Pictures/3.png" hspace="20" width="42" height="60" name="r1" id="9" type="radio" onclick=f1(id);></img>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label class="control-label col-sm-5" for="stf" style="font-size:18px">Doctor Consultant</label>
+                    <div class="col-sm-12">
+
+                        <img src="~/Pictures/1.png" hspace="20" width="42" height="60" name="r1" id="10" type="radio" onclick=f1(id);></img>
+
+                        <img src="~/Pictures/2.png" hspace="20" width="42" height="60" name="r1" id="11" type="radio" onclick=f1(id);></img>
+                        <img src="~/Pictures/3.png" hspace="20" width="42" height="60" name="r1" id="12" type="radio" onclick=f1(id);></img>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label class="control-label col-sm-5" for="stf" style="font-size:18px">Staff Service</label>
+                    <div class="col-sm-12">
+
+                        <img src="~/Pictures/1.png" hspace="20" width="42" height="60" name="r1" id="13" type="radio" onclick=f1(id);></img>
+
+                        <img src="~/Pictures/2.png" hspace="20" width="42" height="60" name="r1" id="14" type="radio" onclick=f1(id);></img>
+                        <img src="~/Pictures/3.png" hspace="20" width="42" height="60" name="r1" id="15" type="radio" onclick=f1(id);></img>
+                    </div>
+                </div>
+                <div class="col-sm-offset-5 col-sm-13">
+                    <button type="submit" class="btn btn-primary" name="command" value="submit">SUBMIT</button>
+                </div>
+            </div>
+
+        }
+    </div>
+
+</body>
+</html>

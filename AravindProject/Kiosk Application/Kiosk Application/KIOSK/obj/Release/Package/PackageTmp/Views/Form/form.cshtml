@@ -1,0 +1,858 @@
+﻿@model KIOSK.Models.form
+@using System.Configuration;
+@using KIOSK.Models
+@{
+    Layout = null;
+}
+@{
+    Entities3 db = new Entities3();
+
+    String url1 = ConfigurationManager.AppSettings["gettalukcode"];
+    List<SelectListItem> agentdropdownlistdata = new List<SelectListItem>();
+    bool isSelected = false;
+    foreach (var item in db.Taluk_Master)
+    {
+        agentdropdownlistdata.Add(new SelectListItem
+        {
+            Text = item.TALUK_NAME.ToString(),
+            Value = item.TALUK_CODE.ToString(),
+            Selected = isSelected
+        });
+
+    }
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = "S/O",
+        Value = "S/O",
+        Selected = true
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "D/O",
+        Value = "D/O",
+
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "F/O",
+        Value = "F/O"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "W/O",
+        Value = "W/O"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "H/O",
+        Value = "H/O"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "M/O",
+        Value = "M/O"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "C/O",
+        Value = "C/O"
+    });
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PatientRegistrationForm</title>
+    <script type="text/javascript" src="~/Scripts/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.ui.datepicker.js"></script>
+    <!--<script type="text/javascript" src="~/Scripts/jquery.mobile.datepicker.js"></script>-->
+    <link href="~/Content/jquery.mobile.datepicker.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="~/Scripts/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.keyboard.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-ui.js"></script>
+    <!--<script type="text/javascript" src="~/Scripts/Mykeyboard.js"></script>-->
+    <script type="text/javascript" src="~/Scripts/jquery.searchabledropdown-1.0.8.src.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.mailtip.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-birthday-picker.js"></script>
+    <link rel="stylesheet" href='~/Content/bootstrap.css' />
+    <link rel="stylesheet" href='~/Content/jquery-ui.css' />
+    <link rel="stylesheet" href='~/Content/datepicker.css' />
+    <link rel="stylesheet" href="~/Content/keyboard.css" />
+    <link rel="stylesheet" href="~/Content/font-awesome.css" />
+    <link rel="stylesheet" href="~/Content/mailtip.css" />
+    <link rel="stylesheet" href="~/Content/keyboard-previewkeyset.css" />
+
+
+
+
+    <style>
+        .topright {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            font-size: 18px;
+        }
+
+        .myclassborder {
+            border: 4px solid #f00;
+        }
+
+        .field-validation-error {
+            color: #f00;
+        }
+
+        .field-validation-valid {
+            display: none;
+        }
+
+        .input-validation-error {
+            border: 1px solid #f00;
+            background-color: #fee;
+        }
+
+        .validation-summary-errors {
+            font-weight: bold;
+            color: #f00;
+        }
+
+        .ui-autocomplete {
+            max-height: 100px;
+            overflow-y: auto;
+            /* prevent horizontal scrollbar */
+            overflow-x: hidden;
+        }
+    </style>
+    <script>
+       function agetodob() {
+           var x = document.getElementById("age");
+           //alert(x.value);
+           //x.value = x.value.toUpperCase();
+          var d = new Date();
+           var month = d.getMonth() + 1;
+           var day = d.getDate();
+
+           var output = d.getFullYear() + '/' +
+               (month < 10 ? '0' : '') + month + '/' +
+               (day < 10 ? '0' : '') + day;
+           var year = output.substring(0, 4);
+           var query = x.value;
+         //  alert(query);
+           //alert(year - query);
+           var check = year - query;
+           if (x.value == '')
+           {
+               $('#DOB').val('');
+           }
+           else if (check > 0 && x.value <= 150)
+               $('#DOB').val('01/01/' + (year - query).toString());
+           else {
+               $("#age").val('');
+               $('#DOB').val('');
+           }
+       }
+       function dobtoage()
+       {
+           var x = document.getElementById('DOB');
+          var d= x.value;
+   
+             // alert(x.value);
+              var today = new Date();
+              var dd = Number(today.getDate());
+              var mm = Number(today.getMonth() + 1);
+
+              var yyyy = Number(today.getFullYear());
+
+
+              var myBDM = Number(x.value.split("/")[1])
+              var myBDD = Number(x.value.split("/")[0])
+              var myBDY = Number(x.value.split("/")[2])
+             // alert(myBDM + "," + myBDD + "," + myBDY);
+              var age = yyyy - myBDY;
+
+              if (mm < myBDM) {
+                  age = age - 1;
+              }
+              else if (mm == myBDM && dd < myBDD) {
+                  age = age - 1;
+              }
+              if (age >=0 && age <= 150&&myBDM<13)
+                  $('#age').val(age);
+              else
+                  $('#age').val("");
+          
+       }
+       (function ($) {
+
+          $.widget("custom.combobox", {
+
+              _create: function () {
+                  this.wrapper = $("<span>")
+                    .addClass("custom-combobox")
+                    .insertAfter(this.element)
+
+                  this.element.hide();
+                  this._createAutocomplete();
+                 // this._createShowAllButton();
+
+              },
+
+              _createAutocomplete: function () {
+                  var selected = this.element.children(":selected"),
+                    value = selected.val() ? selected.text() : "";
+
+                  this.input = $("<input>")
+                    .appendTo(this.wrapper)
+                    .val(value)
+                    .attr("title", "")
+                    .addClass("form-control col-sm-2")
+                    .autocomplete({
+                        delay: 0,
+                        minLength: 0,
+
+                        source: $.proxy(this, "_source")
+                    })
+
+                    .tooltip({
+                        tooltipClass: "ui-state-highlight"
+                    });
+
+                  this._on(this.input, {
+                      autocompleteselect: function (event, ui) {
+
+                        //  alert(ui.item.option.value);
+                          var url = "@Html.Raw(HttpUtility.JavaScriptStringEncode(url1))";
+                          //alert(url);
+                          var district = "";
+                          var state = "";
+                          var country = "";
+                          var pos = "";
+                          //alert("called");
+
+                          // var conceptName = $('#combobox').val();
+                          var conceptName = ui.item.option.value;
+                          // alert(conceptName);
+                          if (conceptName == "") {
+                              // alert(conceptName);
+                              //$('#district').attr("disabled", "disabled");
+                              $('#district').val("");
+                              //$('#state').attr("disabled", "disabled");
+                              $('#state').val("");
+                              // $('#country').attr("disabled", "disabled");
+                              $('#country').val("");
+                          }
+                          else {
+                              //alert(url+conceptName);
+
+                              $.ajax({
+                                  url: url + conceptName,
+                                  crossOrgin: true,	// use jsonp for cross origin request
+                                  dataType: 'json',
+                                  type: 'GET',
+                                  success: function (data) {
+                                      for (var i = 0; i < data.length; i++) {
+                                          if (data[i] != '$') {
+                                              district = district + data[i];
+
+                                          }
+                                          else {
+                                              pos = i;
+                                              break;
+                                          }
+                                      }
+                                      for (var i = pos + 1; i < data.length; i++) {
+                                          if (data[i] != '$') {
+                                              state = state + data[i];
+                                          }
+                                          else {
+                                              pos = i;
+                                              break;
+                                          }
+                                      }
+                                      for (var i = pos + 1; i < data.length; i++) {
+                                          country = country + data[i];
+                                      }
+                                      // alert('called');
+                                      //alert(state);
+                                      //  $('#district').removeAttr("disabled");
+                                      // $('#state').removeAttr("disabled");
+                                      //$('#country').removeAttr("disabled");
+                                      $("#district").prop('readonly', false);
+                                      $("#state").prop('readonly', false);
+                                      $("#country").prop('readonly', false);
+                                      $('#district').val(district.trim());
+                                      $('#state').val(state.trim());
+                                      $('#country').val(country.trim());
+                                      $("#district").prop('readonly', true);
+                                      $("#state").prop('readonly', true);
+                                      $("#country").prop('readonly', true);
+                                      console.log(data);
+                                  },
+                                  error: function () {
+                                      alert('not called');
+                                  }
+                              });
+                              // $('#city').removeAttr("disabled");
+                          }
+                          ui.item.option.selected = true;
+                          this._trigger("select", event, {
+                              item: ui.item.option
+                          });
+                      },
+
+                      autocompletechange: "_removeIfInvalid"
+                  });
+              },
+
+/*              _createShowAllButton: function () {
+                  var input = this.input,
+                    wasOpen = false;
+
+                  $("<a>")
+                    .attr("tabIndex", -1)
+                    .attr("title", "Show All Items")
+                    .tooltip()
+                    .appendTo(this.wrapper)
+                    .button({
+                        icons: {
+                            primary: "ui-icon-triangle-1-s"
+                        },
+                        text: false
+                    })
+                    .removeClass("ui-corner-all")
+                    .addClass("custom-combobox-toggle")
+                    .mousedown(function () {
+                        wasOpen = input.autocomplete("widget").is(":visible");
+                    })
+                    .click(function () {
+                        input.focus();
+                      //  alert('sdf'); // Close if already visible
+                        if (wasOpen) {
+                            return;
+                        }
+
+                        // Pass empty string as value to search for, displaying all results
+                        input.autocomplete("search", "");
+                    });
+              },
+*/
+              _source: function (request, response) {
+                  var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                  response(this.element.children("option").map(function () {
+                      var text = $(this).text();
+
+                      if (this.value && (!request.term || matcher.test(text)))
+                          return {
+                              label: text,
+                              value: text,
+                              option: this
+                          };
+                  }));
+              },
+
+              _removeIfInvalid: function (event, ui) {
+
+                  // Selected an item, nothing to do
+                  if (ui.item) {
+
+                      return;
+                  }
+
+                  // Search for a match (case-insensitive)
+                  var value = this.input.val(),
+
+                    valueLowerCase = value.toLowerCase(),
+                    valid = false;
+                  this.element.children("option").each(function () {
+                      if ($(this).text().toLowerCase() === valueLowerCase) {
+                          this.selected = valid = true;
+                          return false;
+                      }
+                  });
+
+                  // Found a match, nothing to do
+                  if (valid) {
+                      return;
+                  }
+
+                  // Remove invalid value
+                  this.input
+                    .val("")
+                    .attr("title", value + " didn't match any item")
+                    .tooltip("open");
+                  this.element.val("");
+                  this._delay(function () {
+                      this.input.tooltip("close").attr("title", "");
+                  }, 2500);
+                  this.input.autocomplete("instance").term = "";
+              },
+
+              _destroy: function () {
+                  this.wrapper.remove();
+                  this.element.show();
+              }
+          });
+      })(jQuery);
+       $(function () {
+           $('#name').keyup(function () {
+               this.value = this.value.toUpperCase();
+           });
+           $('#kithkin').keyup(function () {
+               this.value = this.value.toUpperCase();
+           });
+           $('#nextofkin').keyup(function () {
+               this.value = this.value.toUpperCase();
+           });
+           $('#city').keyup(function () {
+               this.value = this.value.toUpperCase();
+           });
+           $('#street').keyup(function () {
+               this.value = this.value.toUpperCase();
+           });
+           $('#locality').keyup(function () {
+               this.value = this.value.toUpperCase();
+           });
+           $('#email').keyup(function () {
+               this.value = this.value.toLowerCase();
+           });
+       });
+      $(function () {
+          $("#combobox").combobox();
+          $("#toggle").click(function () {
+              $("#combobox").toggle();
+          });
+      });
+       jQuery.fn.preventDoubleSubmission = function () {
+           $(this).on('submit', function (e) {
+               var $form = $(this);
+
+               if ($form.data('submitted') === true) {
+                   // Previously submitted - don't submit again
+                   e.preventDefault();
+               } else {
+                   // Mark it so that the next submit can be ignored
+                   $form.data('submitted', true);
+               }
+           });
+
+           // Keep chainability
+           return this;
+       };
+       $(document).ready(function () {
+        
+           $('form').preventDoubleSubmission();
+           $("#district").prop('readonly', true);
+           $("#state").prop('readonly', true);
+           $("#country").prop('readonly', true);
+
+           $(window).keydown(function (event) {
+               if (event.keyCode == 13) {
+                   event.preventDefault();
+                   return false;
+               }
+           });
+           /* $('#name').keypress(function (e) {
+
+                if ((e.which < 97 || e.which > 122) && (e.which < 65 || e.which > 90)&&e.which!=8&&e.which!=0&&e.which!=32&&e.which!=46) { $("#errmsg2").html("Alphabets Only").show().fadeOut("slow"); return false; }
+            });
+            $('#locality').keypress(function (e) {
+
+                if ((e.which < 97 || e.which > 122) && (e.which < 65 || e.which > 90) && e.which != 8 && e.which != 0 && e.which != 32 && e.which != 46) { $("#errmsg5").html("Alphabets Only").show().fadeOut("slow"); return false; }
+            });
+            $('#city').keypress(function (e) {
+
+                if (e.which != 8 && e.which != 0 && (e.which < 97 || e.which > 122) && (e.which < 65 || e.which > 90) && e.which != 8 && e.which != 0 && e.which != 32 && e.which != 46) { $("#errmsg3").html("Alphabets Only").show().fadeOut("slow"); return false; }
+            });
+            $('#nextofkin').keypress(function (e) {
+
+                if (e.which != 8 && e.which != 0 && (e.which < 97 || e.which > 122) && (e.which < 65 || e.which > 90) && e.which != 8 && e.which != 0 && e.which != 32 && e.which != 46&&e.which!=47) { $("#errmsg6").html("Alphabets Only").show().fadeOut("slow"); return false; }
+            });
+            $("#mobile").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0&&e.which!=43&&e.which!=45 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                    return false;
+                }
+            });
+            $("#landline").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0&&e.which!=43&&e.which!=45 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    $("#errmsg1").html("Digits Only").show().fadeOut("slow");
+                    return false;
+                }
+            });
+            $("#pin").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    $("#errmsg4").html("Digits Only").show().fadeOut("slow");
+                    return false;
+                }
+            });
+            $("#age").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    $("#errmsg7").html("Digits Only").show().fadeOut("slow");
+                    return false;
+                }
+            });*/
+
+       });
+
+       function f2() {
+           b2.disabled = true;
+       }
+
+
+       
+       
+
+       $(function () {
+
+           $('#DOB').datepicker({
+               dateFormat: 'dd/mm/yy',
+               changeMonth: true,
+               changeYear: true,
+
+               yearRange: '1900:+0',
+               maxDate: new Date,
+               onSelect: function (selected, evnt) {
+                   //alert(selected);
+                   var v = $('#DOB').val();
+                   var today = new Date();
+                   var dd = Number(today.getDate());
+                   var mm = Number(today.getMonth() + 1);
+
+                   var yyyy = Number(today.getFullYear());
+
+
+                   var myBDM = Number(v.split("/")[1])
+                   var myBDD = Number(v.split("/")[0])
+                   var myBDY = Number(v.split("/")[2])
+                   var age = yyyy - myBDY;
+
+                   if (mm < myBDM) {
+                       age = age - 1;
+                   }
+                   else if (mm == myBDM && dd < myBDD) {
+                       age = age - 1;
+                   }
+
+                   $('#age').val(age);
+                   $('#kithkin').focus();
+               }
+           }).on('changeDate', function (ev) {
+               var v = $('#DOB').val();
+               var today = new Date();
+               var dd = Number(today.getDate());
+               var mm = Number(today.getMonth() + 1);
+
+               var yyyy = Number(today.getFullYear());
+
+
+               var myBDM = Number(v.split("/")[1])
+               var myBDD = Number(v.split("/")[0])
+               var myBDY = Number(v.split("/")[2])
+               var age = yyyy - myBDY;
+
+               if (mm < myBDM) {
+                   age = age - 1;
+               }
+               else if (mm == myBDM && dd < myBDD) {
+                   age = age - 1;
+               }
+
+               $('#age').val(age);
+           });
+
+       });
+
+
+
+
+       $("#target").keyup(function () {
+           //Fetching the textbox value.
+           var query = $(this).val();
+           //Calling GetItems method.
+           getItems(query);
+       });
+       $(document).ready(function () {
+           $('input[type=radio]').click(function () {
+               // alert(this.value);
+               $("#targetUL").find("li").remove();
+               $("#targetUL").remove();
+           });
+       });
+
+
+       function GetDateDiff(date1, date2) {
+
+           return Math.floor(Math.abs((date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24)) / 365);
+
+       }
+       //This method appends the text oc clicked li element to textbox.
+       function appendTextToTextBox(e) {
+           //alert(e.textContent);
+           //Getting the text of selected li element.
+           var textToappend = e.textContent;
+
+           //setting the value attribute of textbox with selected li element.
+           $("#target").val(textToappend);
+           //Removing the ul element once selected element is set to textbox.
+           $("#targetUL").remove();
+       }
+
+       $(function () {
+
+           /*  $('#email').mailtip({
+                 onselected: function (mail) {
+
+                 }
+             });
+         });*/
+           function f2() {
+
+               $('#nextofkin').attr('placeholder', 'AAAA');
+           }
+           function f3() {
+               $('#nextofkin').attr('placeholder', 'AAAA');
+           }
+           /*   $().ready(function () {
+                  // validate signup form on keyup and submit
+                  $("#commentForm").validate({
+                      rules: {
+                          name:
+                          {
+                              required:true
+                          },
+
+                          mobile:
+                          {
+                              minlength: 10
+                          }, messages: {
+                              name:"This field is required",
+                              email: "Please enter a valid email address",
+                              mobile: "Please enter 10 numbers"
+                          }
+                      }
+                  });
+              });*/
+           function f5() {
+               var url = '@Url.Action("Index1", "Home")';
+               window.location.href = url;
+           }
+           function keyboarddisplay() {
+
+               var txt;
+               txt = document.getElementById('combobox').value;
+               if (val != 'B') {
+                   txt = txt + '' + val;
+               }
+               else {
+                   txt = txt.substr(0, (txt.length) - 1);
+               }
+               document.getElementById('combobox').value = txt;
+
+
+           }
+       });
+    </script>
+</head>
+
+<body id="my">
+
+    <div class="container">
+        <center>  <h2>New Patient Registration</h2></center>
+        <div class="topright"><span style="color:red">*</span> Mandatory Fields</div>
+
+
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "commentForm" }))
+        {
+            <div class="form-horizontal">
+                <div class="form-group" id="targetDiv">
+                    <label class="control-label col-sm-2" for="name">Name<span style="color:red">*</span></label>
+                    <div id="targetDiv" class="col-sm-3">
+
+                        @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", @placeholder = "Enter Name", @maxlength = "30", @autocomplete = "off"})
+                        @Html.ValidationMessageFor(model => model.name)
+
+                        <span id="errmsg2"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Sex">Sex<span style="color:red">*</span></label>
+
+                    <label class="radio col-sm-2">@Html.RadioButtonFor(m => m.sex, "M", new { @onclick = "f2()", @checked = "checked" }) <i class="fa fa-male" style="font-size:25px"><span style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size: 14px;"><b> Male</b></span></i> </label>
+
+                    <label class="radio col-sm-2">@Html.RadioButtonFor(m => m.sex, "F", new { @onclick = "f3()"}) <i class="fa fa-female" style="font-size:25px"><span style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size: 14px;"> <b>Female</b></span></i></label>
+
+                    @Html.ValidationMessageFor(model => model.sex)
+
+                </div>
+
+
+
+
+                <div class="form-group">
+
+                    <label class="control-label col-sm-2 " for="DOB">Date of Birth<span style="color:red">*</span></label>
+                    <div class="col-sm-3">
+
+                        @Html.TextBoxFor(m => m.dob, new { @class = "form-control datepicker", @id = "DOB", @placeholder = "dd/mm/yyyy", @autocomplete = "off", @onkeyup = "dobtoage()" })
+                        @Html.ValidationMessageFor(model => model.dob)
+
+                    </div>
+                    <label class="control-label col-sm-2 " for="age">Age<span style="color:red">*</span></label>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(m => m.age, new { @class = "form-control", @id = "age", @placeholder = "", @maxlength = "3", @autocomplete = "off", @onkeyup = "agetodob()",@tabindex="-1" })
+                        @Html.ValidationMessageFor(model => model.age)
+                        <span id="errmsg7"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2 " for="kin">Relative Name<span style="color:red">*</span></label>
+                    <div class="col-md-1">
+
+                        @Html.DropDownListFor(m => m.relation, listItems, new { @id = "kithkin", @class = "btn btn-default dropdown-toggle"})
+                    </div>
+                    <div class="col-sm-2">
+
+                        @Html.TextBoxFor(m => m.nextofkin, new { @class = "form-control", @id = "nextofkin", @placeholder = "AAAA", @maxlength = "26", @autocomplete = "off"})
+                        @Html.ValidationMessageFor(model => model.nextofkin)
+                        <span id="errmsg6"></span>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Door">Door No/Street <span style="color:red">*</span></label>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(m => m.street, new { @class = "form-control", @id = "street", @placeholder = "Enter Door No./Street ", @maxlength = "50", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.street)
+
+                    </div>
+                    <label class="control-label col-sm-2 " for="locality">Landmark/Village<span style="color:red">*</span></label>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(m => m.locality, new { @class = "form-control", @id = "locality", @placeholder = "Enter your Landmark / Village", @maxlength = "50", @autocomplete = "off"})
+                        @Html.ValidationMessageFor(model => model.locality)
+                        <span id="errmsg5"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="city">City<span style="color:red">*</span></label>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(m => m.city, new { @class = "form-control", @id = "city", @placeholder = "Enter City", @maxlength = "25", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.city)
+                        <span id="errmsg3"></span>
+                    </div>
+                    <label class="control-label col-sm-2" for="Pincode">Pincode</label>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(m => m.pin, new { @class = "form-control", @id = "pin", @placeholder = "Enter pincode", @maxlength = "10", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.pin)
+                        <span id="errmsg4"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Taluk">Taluk<span style="color:red">*</span></label>
+                    <div class="col-sm-3">
+                        <!-- Search <input type="text" name="yourTextField" onkeyup="filtery(this.value,this.form.taluk)" onchange="filtery(this.value,this.form.taluk)">-->
+                        @Html.DropDownListFor(m => m.taluk, agentdropdownlistdata, "Select Taluk", new { @id = "combobox", @class = "form-control", @onchange = "this.size=1,this.blur(),f1()", @onblur = "this.size=1"})
+                        @Html.ValidationMessageFor(model => model.taluk)
+                    </div>
+
+                    <label class="control-label col-sm-2" for="District">District<span style="color:red">*</span></label>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(m => m.district, new { @class = "form-control", @id = "district", @placeholder = "Enter district" })
+
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="State">State<span style="color:red">*</span></label>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(m => m.state, new { @class = "form-control", @id = "state", @placeholder = "Enter state" })
+
+
+                    </div>
+                    <label class="control-label col-sm-2" for="Country">Country<span style="color:red">*</span></label>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(m => m.country, new { @class = "form-control", @id = "country", @placeholder = "Enter Country" })
+
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Email</label>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(m => m.email, new { @class = "form-control", @id = "email", @placeholder = "Enter email", @maxlength = "30", @autocomplete = "off"})
+                        @Html.ValidationMessageFor(model => model.email)
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="PhoneNo">Phone Number</label>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(m => m.landline, new { @class = "form-control", @id = "landline", @placeholder = "Enter Landline No.", @maxlength = "30", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.landline)
+                        <span id="errmsg1"></span>
+
+                        <!--input type="PhoneNo" class="form-control" id="PhoneNo" placeholder="Enter PhoneNo"-->
+                    </div>
+
+                    <label class="control-label col-sm-2" for="MobileNo">Mobile Number</label>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(m => m.mobile, new { @class = "form-control", @id = "mobile", @placeholder = "Enter Cell Phone No.", @maxlength = "30", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.mobile)
+
+                        <span id="errmsg"></span>
+                        <!--input type="MobileNo" class="form-control" id="MobileNo" placeholder="Enter MobileNo"-->
+                    </div>
+                </div>
+
+                <!--<div class="form-group">
+                     <label class="control-label col-sm-2" for="Alreadyvisited">Already Visited<span style="color:red">*</span></label>
+
+                     <label class="radio col-sm-1">@Html.RadioButtonFor(m => m.alreadyVisted, "Yes", true)Yes</label>
+                     <label class="radio col-sm-1">@Html.RadioButtonFor(m => m.alreadyVisted, "No", false)No</label>
+
+                     @Html.ValidationMessageFor(model => model.alreadyVisted)
+
+                 </div>-->
+
+            </div>
+            //@Html.ActionLink("Submit", "form", "Form", null, new { @id = "b2", @class = "btn btn-primary c5" })
+            //@Html.ActionLink("BACK", "Index1", "Home", null, new { @id = "b2", @class = "btn btn-primary c4" })
+
+            <div class="text-center">
+                @Html.ActionLink("BACK", "Sample", "Home", null, new { @id = "b2", @class = "btn btn-primary" })
+                <button type="submit" class="btn btn-primary" name="command" value="submit" onclick="this.disabled = true">SUBMIT</button>
+            </div>
+        }
+
+
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+﻿@model KIOSK.Models.OTP
+@using System.Configuration;
+@{
+    Layout = null;
+    var text = @Model.pin;
+    string url = ConfigurationManager.AppSettings["EMR"];
+    string url1 = ConfigurationManager.AppSettings["UpdateMRIDtomydb"];
+    var Name = Model.name;
+    var Age =Model.age;
+    var Dob = Model.dob;
+    var Gender = Model.gender;
+    string Date = Model.dt.ToString() ;
+    var Email =Model.email;
+    var MobileNo =Model.mobileno;
+    var LandlineNo =Model.landlineno;
+    var Address = Model.address;
+    var City = "";
+    var District = "";
+    var State = "";
+    var Country = "";
+    var Pincode = "";
+    var Visit = "";
+    var mrno = "";
+    var d = "";
+}
+@{
+    for(int i=0;i<Date.Length;i++)
+    {
+        if (Date[i] != ' ')
+        {
+            d = d + Date[i];
+        }
+        else
+        {
+            break;
+        }
+
+
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RsvpForm</title>
+    <link rel="stylesheet" href='~/Content/bootstrap.css'>
+    <link rel="stylesheet" href='~/Content/font-awesome.css'>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/qrcode.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script language="javascript" type="text/javascript">
+        function makeqr (mrno)
+        {
+            alert('from makeqr'+mrno);
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                width : 70,
+                height : 70,
+                left:590,
+                top:299
+            });
+
+            qrcode.makeCode(mrno);
+         setTimeout(printfunction('idcard'),3000);
+        }
+        function printfunction(divID)
+        {
+            var divElements = document.getElementById(divID).innerHTML;
+
+            //Get the HTML of whole page
+            var oldPage = document.body.innerHTML;
+
+            document.body.innerHTML = divElements;
+            //Print Page
+            window.print();
+            alert("PLEASE COLLECT YOUR ID CARD AND GO TO PAYMENT COUNTER");
+            //Restore orignal HTML
+            document.body.innerHTML = oldPage;
+            window.location.href = "http://localhost:53236/Home/Index1";
+        }
+
+        function printDiv(divID)
+        {
+            var otp = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.pin))";
+            var Name = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.name))";
+            var Age = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.age.ToString()))";
+            var Dob = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.dob.ToString()))";
+            var Gender = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.gender))";
+            var date = "@Html.Raw(HttpUtility.JavaScriptStringEncode(d))";
+            var email = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.email))";
+            var mobile = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.mobileno))";
+            var landline = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.landlineno))";
+            var address = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.address))";
+            var city = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.city))";
+            var district = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.district))";
+            var state = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.state))";
+            var country = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.country))";
+            var pincode = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.pincode))";
+            var visit = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.visit))";
+            var url = "@Html.Raw(HttpUtility.JavaScriptStringEncode(url))";
+            var url1 = "@Html.Raw(HttpUtility.JavaScriptStringEncode(url1))";
+
+            var mrno = "";
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                width: 70,
+                height: 70,
+                left: 590,
+                top: 299
+            });
+          //  alert(Name + "\n" + Age + "\n" + Dob+"\n"+Gender+"\n"+date+"\n"+email+"\n"+mobile+"\n"+landline+"\n"+address+"\n"+city+"\n"+district+"\n"+state+"\n"+country+"\n"+pincode+"\n"+visit);
+            $.ajax({
+                url:""+url+Name+"&Age="+Age+"&Dob="+Dob+"&Gender="+Gender+"&Dt="+date+"&Email="+email+"&MobileNo="+mobile+"&LandlineNo="+landline+"&Address="+address+"&City="+city+"&District="+district+"&State="+state+"&Country="+country+"&Pincode="+pincode+"&Visit="+visit,
+                crossOrgin: true,
+                dataType: 'json',
+                type: 'GET',
+                success: function (data) {
+                    //YOUR CODE FOR AJAX SUCCES
+                    $.get(url1+otp+"&mrno="+data.MRNO);
+                    b1.disabled = true;
+                    qrcode.makeCode(data.MRNO);
+                  //  alert(mrno);
+                    document.getElementById("d10").innerHTML =data.MRNO; 
+                    document.getElementById("d11").innerHTML = data.MRNO;
+                }, error: function (err)
+                {
+                    console.log(err);
+                    alert("cannot be displayed");
+                }
+            });
+  
+            setTimeout(function ()
+            {
+                var divElements = document.getElementById('idcard').innerHTML;
+
+                //Get the HTML of whole page
+                var oldPage = document.body.innerHTML;
+
+                document.body.innerHTML = divElements;
+                //Print Page
+                window.print();
+                alert("PLEASE COLLECT YOUR ID CARD AND GO TO PAYMENT COUNTER");
+                document.body.innerHTML = oldPage;
+                window.location.href = "http://localhost:53236/Home/Index1";
+            }, 3000);
+        }
+
+        function bck()
+        {
+            history.back();
+        }
+    </script>
+    <style src="stylesheet" type="text/css">
+          .c3{
+            position:absolute;
+            left:600px;
+            top:420px;
+        }
+        .c4{
+            position:absolute;
+            left:540px;
+            top:420px;
+        }
+    </style>
+</head>
+<body>
+   
+        <br />
+        <br />
+        <br />
+        <center> <h2><b>PLEASE TAKE PRINT OUT OF YOUR ID CARD AND GO TO CASH COUNTER</b></h2></center>
+
+        <input id="b1" type="button" class="btn btn-success c3" value="SUBMIT" onclick="printDiv('idcard')" />
+        @Html.ActionLink("BACK", "Index", null, new { @id = "b2", @class = "btn btn-primary c4" })
+    
+    <div id="idcard">
+        <img id="img1" style="position:absolute;left:270px;top:190px;z-index:1" src="~/Pictures/patientidcard.png" />
+        <div id="d1" style="position:absolute;left:338px;top:280px;z-index:2" />@Model.name</div>
+    <div id="d2" style="position:absolute;left:620px;top:240px;z-index:2" />@d</div>
+    <div id="d3" style="position:absolute;left:345px;top:323px;z-index:2" />@Model.address</div>
+    <div id="d4" style="position:absolute;left:345px;top:340px;z-index:2" />@Model.city</div>
+    <div id="d5" style="position:absolute;left:345px;top:357px;z-index:2" />@Model.district</div>
+    <div id="d6" style="position:absolute;left:345px;top:374px;z-index:2" />@Model.country</div>
+    <div id="d7" style="position:absolute;left:772px;top:270px;z-index:2" />@Model.name</div>
+    <div id="d8" style="position:absolute;left:772px;top:374px;z-index:2" />@d</div>
+    <div id="d9" style="position:absolute;left:772px;top:340px;z-index:2" />50</div>
+    <div id="d10" style="position:absolute;left:380px;top:240px;z-index:2"/></div>
+    <div id="d11" style="position:absolute;left:800px;top:240px;z-index:2" /></div>
+    <div id="qrcode" style="width:70px; height:70px;  position:absolute; left:560px;top: 299px;z-index:2"> </div>
+    </div>
+</body>
+</html>

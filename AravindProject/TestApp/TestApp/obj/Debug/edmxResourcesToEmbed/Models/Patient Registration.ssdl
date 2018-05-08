@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="PIN" />
+    </Key>
+    <Property Name="PIN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="Dob" Type="datetime" />
+    <Property Name="Gender" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Nextofkin" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Dt" Type="date" />
+    <Property Name="Email" Type="nvarchar" MaxLength="30" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="30" />
+    <Property Name="LandlineNo" Type="char" MaxLength="30" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Locality" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="25" />
+    <Property Name="Pincode" Type="varchar" MaxLength="10" />
+    <Property Name="Taluk" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="District" Type="varchar" MaxLength="10" />
+    <Property Name="State" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Country" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Visit" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="MRNO" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

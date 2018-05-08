@@ -1,0 +1,145 @@
+﻿@model KIOSK.Models.form
+@using System.Configuration;
+@{
+    Layout = null;
+    var name = @Model.name;
+    var street = @Model.street;
+    var city = @Model.city;
+    var state = @Model.state;
+    var otp = @Model.otp;
+    var age = @Model.age;
+    string url = ConfigurationManager.AppSettings["EMR"];
+    var district = @Model.district;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/qrcode.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <title>RsvpForm</title>
+    <script language="javascript" type="text/javascript">
+        function printDiv(divID)
+        {
+            
+            var Name = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.name))";
+            var Age = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.age))";
+            var Dob = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.dob.ToString()))";
+            var Gender = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.sex))";
+            var date = new Date().toLocaleDateString();
+            //alert(date);
+            var email = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.email))";
+            var mobile = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.mobile))";
+            var landline = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.landline))";
+            var address = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.street))";
+            var city = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.city))";
+            var district = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.district))";
+            var state = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.state))";
+            var country = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.country))";
+            var pincode = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.pin))";
+            var visit = "@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.alreadyVisted))";
+            var mrno = "";
+            var url="@Html.Raw(HttpUtility.JavaScriptStringEncode(url))";
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                width: 70,
+                height: 70,
+                left: 590,
+                top: 299
+            });
+            $.ajax({
+                url: ""+url+Name + "&Age=" + Age + "&Dob=" + Dob + "&Gender=" + Gender + "&Dt=" + date + "&Email=" + email + "&MobileNo=" + mobile + "&LandlineNo=" + landline + "&Address=" + address + "&City=" + city + "&District=" + district + "&State=" + state + "&Country=" + country + "&Pincode=" + pincode + "&Visit=" + visit,
+                crossOrgin: true,
+                dataType: 'json',
+                type: 'GET',
+                success: function (data) {
+                    //YOUR CODE FOR AJAX SUCCES
+                    qrcode.makeCode(data.MRNO);
+                    document.getElementById("d10").innerHTML =data.MRNO; 
+                    document.getElementById("d11").innerHTML = data.MRNO;
+                }, error: function (err)
+                {
+                    console.log(err);
+                    alert("cannot be displayed");
+                }
+            });
+            b1.disabled = true;
+            setTimeout(function ()
+            {
+                var divElements = document.getElementById('idcard').innerHTML;
+
+                //Get the HTML of whole page
+                var oldPage = document.body.innerHTML;
+
+                document.body.innerHTML = divElements;
+                //Print Page
+                window.print();
+                alert("PLEASE COLLECT YOUR ID CARD AND GO TO PAYMENT COUNTER");
+                document.body.innerHTML = oldPage;
+                window.location.href = "http://localhost:53236/Home/Index1";
+            }, 3000);
+        }
+       
+        function bck()
+        {
+            history.back();
+        }
+    </script>
+   
+   
+    <style src="stylesheet" type="text/css">
+
+  
+       
+        
+          .c3{
+            position:absolute;
+            left:600px;
+            top:420px;
+        }
+        .c4{
+            position:absolute;
+            left:540px;
+            top:420px;
+        }
+
+    </style>
+</head>
+<body>
+    <!--590 299-->
+    <br/>
+    <br/>
+    <br/>
+    <center> <h2><b>PLEASE TAKE PRINT OUT OF YOUR ID CARD AND GO TO CASH COUNTER</b></h2></center>
+   
+    
+    <script>
+var d = new Date();
+document.getElementById("d2").innerHTML = d.toDateString();
+document.getElementById("d8").innerHTML = d.toDateString();
+    </script>
+   
+    <input type="submit" class="btn btn-success c3" id="b1" value="SUBMIT" onclick="javascript:printDiv('idcard')"/>
+    <button id="editb" class="btn btn-primary c4" value="EDIT" onclick="bck()">EDIT</button>
+
+    <div id="idcard">
+        <img id="img1" style="position:absolute;left:270px;top:190px;z-index:1" src="~/Pictures/patientidcard.png" />
+        <div id="d1" style="position:absolute;left:338px;top:280px;z-index:2" /> @Model.name</div>
+    <div id="d2" style="position:absolute;left:620px;top:240px;z-index:2" /></div>
+    <div id="d3" style="position:absolute;left:345px;top:323px;z-index:2" />@Model.street</div>
+    <div id="d4" style="position:absolute;left:345px;top:340px;z-index:2" />@Model.city</div>
+    <div id="d5" style="position:absolute;left:345px;top:357px;z-index:2" />@Model.district</div>
+    <div id="d6" style="position:absolute;left:345px;top:374px;z-index:2" />@Model.state</div>
+    <div id="d7" style="position:absolute;left:772px;top:270px;z-index:2" />@Model.name</div>
+    <div id="d8" style="position:absolute;left:772px;top:374px;z-index:2" /></div>
+    <div id="d9" style="position:absolute;left:772px;top:340px;z-index:2" />50</div>
+    <div id="d10" style="position:absolute;left:380px;top:240px;z-index:2" /></div>
+    <div id="d11" style="position:absolute;left:800px;top:240px;z-index:2" /></div>
+    <div id="qrcode" style="width:70px; height:70px;  position:absolute; left:560px;top: 299px;z-index:2"></div>
+    </div>
+</body>
+</html>

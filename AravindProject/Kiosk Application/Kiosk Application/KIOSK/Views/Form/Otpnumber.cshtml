@@ -1,0 +1,174 @@
+﻿@model KIOSK.Models.form
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PatientRegistrationForm</title>
+    <script type="text/javascript" src="~/Scripts/jquery-1.11.1.js"></script>
+    <link rel="stylesheet" href='~/Content/bootstrap.css' />
+    <link rel="stylesheet" href='~/Content/jquery-ui.css' />
+    <link rel="stylesheet" href='~/Content/datepicker.css' />
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap-datepicker.js"></script>
+
+    
+    <style type="text/css">
+       
+
+        .c4 {
+            position: absolute;
+            left: 470px;
+            top: 490px;
+        }
+
+        .c5 {
+            position: absolute;
+            left: 300px;
+            top: 490px;
+        }
+
+        .topright {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Registration</h2>
+        <div class="topright"><span style="color:red">*</span> Mandatory Fields</div>
+        @using (Html.BeginForm())
+        {
+            <div>
+                <div class="form-group">
+                    <label  for="Name">Name<span style="color:red">*</span></label>
+                 @Model.name
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label  for="Sex">Sex<span style="color:red">*</span></label>
+
+                 @Model.sex
+
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <label for="DOB">Date of Birth<span style="color:red">*</span></label>
+                    <div >
+                     
+                        @Model.dob
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label  for="kin">Next of Kin</label>
+                    <div >
+
+                     @Model.nextofkin
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <label  for="Door">Door/Street No<span style="color:red">*</span></label>
+                    <div >
+                       @Model.street
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label  for="Pincode">Pincode</label>
+                    <div >
+                  @Model.pin
+                    </div>
+                    <label  for="Taluk">Taluk</label>
+                    <div >
+                      @Model.taluk
+
+                    </div>
+                </div>
+
+
+                
+                    <label  for="city">City<span style="color:red">*</span></label>
+                    <div >
+                        @Model.city
+
+                    </div>
+                    <label  for="District">District<span style="color:red">*</span></label>
+                    <div >
+                      @Model.district
+
+                    </div>
+                                 <label  for="State">State<span style="color:red">*</span></label>
+                    <div>
+                       @Model.state
+
+                    </div>
+                    <label for="Country">Country</label>
+                    <div >
+                       @Model.country
+
+                    </div>
+
+          
+
+
+
+
+                <div >
+                    <label  for="email">Email</label>
+                    <div >
+                        @Model.email
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="PhoneNo">Phone Number</label>
+                    <div class="col-sm-3">
+                      @Model.landline
+                        <!--input type="PhoneNo" class="form-control" id="PhoneNo" placeholder="Enter PhoneNo"-->
+                    </div>
+
+                    <label class="control-label col-sm-2" for="MobileNo">Mobile Number<span style="color:red">*</span></label>
+                    <div class="col-sm-3">
+                       @Model.mobile
+
+                        <!--input type="MobileNo" class="form-control" id="MobileNo" placeholder="Enter MobileNo"-->
+                    </div>
+                </div>
+              
+           
+            <div class="text-center">
+                @Html.ActionLink("BACK", "Index1", "Home", null, new { @id = "b2", @class = "btn btn-primary" })
+                <button type="submit" class="btn btn-primary" name="command" value="submit">SUBMIT</button>
+            </div>
+        }
+
+
+
+
+
+</body>
+</html>
+

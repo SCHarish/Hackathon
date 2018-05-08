@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityContainer Name="Entities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Taluk_Master" EntityType="Model.Taluk_Master" />
+  </EntityContainer>
+  <EntityType Name="Taluk_Master">
+    <Key>
+      <PropertyRef Name="TALUK_CODE" />
+    </Key>
+    <Property Name="TALUK_CODE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TALUK_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DISTRICT_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="GIS_CODE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="taluk_grp" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

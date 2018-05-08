@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Taluk_Master">
+    <Key>
+      <PropertyRef Name="TALUK_CODE" />
+    </Key>
+    <Property Name="TALUK_CODE" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TALUK_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DISTRICT_CODE" Type="varchar" MaxLength="10" />
+    <Property Name="GIS_CODE" Type="varchar" MaxLength="4" />
+    <Property Name="taluk_grp" Type="varchar" MaxLength="2" />
+  </EntityType>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Taluk_Master" EntityType="Self.Taluk_Master" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

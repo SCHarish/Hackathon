@@ -1,0 +1,273 @@
+﻿@using System.Collections;
+@using WebApplication2.Models;
+@{
+    Layout = null;
+   
+
+
+}
+
+@for (int i = 0; i < RefractionTest.Count; i++)
+{
+    refractiontest = refractiontest + RefractionTest[i] + " ";
+}
+@for (int i = 0; i < WaitingForEscort.Count; i++)
+{
+    waitingforescort = waitingforescort + WaitingForEscort[i] + " ";
+}
+@for (int i = 0; i < DoctorConsultant.Count; i++)
+{
+    doctorconsultant = doctorconsultant + DoctorConsultant[i] + " ";
+}
+@for (int i = 0; i < WaitingForRefraction.Count; i++)
+{
+    waitingforrefraction = waitingforrefraction + WaitingForRefraction[i] + " ";
+}
+@for (int i = 0; i < WaitingForIOL.Count; i++)
+{
+    waitingforiol = waitingforiol + WaitingForIOL[i] + " ";
+}
+@for (int i = 0; i < WaitingForDoctor.Count; i++)
+{
+    waitingfordoctor = waitingfordoctor + WaitingForDoctor[i] + " ";
+}
+@for (int i = 0; i < Escort.Count; i++)
+{
+    escort = escort + Escort[i] + " ";
+}
+<html>
+<head>
+
+    <script type="text/javascript" src="~/Scripts/ChartNew.js"></script>
+    <script type="text/javascript" src="~/Scripts/shapesInChart.js"></script>
+
+</head>
+<body>
+    <script>
+        var escort = "", refractiontest = "", waitingforescort = "", waitingforref = "", waitforiol = "", waitingfordoc = "", doc = "";
+        if(@arr[3]==0)
+        {
+            doc="";
+        }
+        else
+        {
+            doc="Doctor Consultant";
+        }
+        if(@arr[1]==0)
+        {
+            escort="";
+        }
+        else{ escort="Escort"}
+        if(@arr[2]==0)
+        {
+            refractiontest="";
+        }
+        else{refractiontest="Refraction Test";}
+        if(@arr[5]==0)
+        {
+            waitingfordoc="";
+        }
+        else{waitingfordoc="Waiting For Doctor";}
+        if(@arr[0]==0)
+        {
+            waitingforescort="";
+        }
+        else
+        {
+            waitingforescort="Waiting For Escort";
+        }
+        if(@arr[6]==0)
+        {
+            waitforiol="";
+        }
+        else{
+            waitforiol="Waiting For IOL";
+        }
+        if(@arr[4]==0)
+        {
+            waitingforref="";
+        }
+        else{
+            waitingforref="Waiting For Refraction";
+        }
+        function displayText(event,ctx,config,data,other)
+        {
+            if(other != null)
+            {
+                if(typeof other.type !="undefined")
+                {
+                    var text="",patients="";
+                    var res=other.values[1];
+                    for(var i=0;i<res.length;i++)
+                    {
+                        if(res[i]!=':')
+                            text=text+res[i];
+                        else
+                            break;
+                    }
+                    alert(text);
+                    switch(text)
+                    {
+                        case "Escort":
+                           escorting();
+                           break;
+                        case "Waiting For Doctor":
+                            waitingfordoctor();
+                            break;
+                        case "Refraction Test":
+                            refractiontesting();
+                            break;
+                        case "Waiting For Refraction":
+                            waitingforrefractiontesting();
+                            break;
+                        case "Waiting For IOL":
+                            waitingforiol();
+                            break;
+                        case "Waiting For Escort":
+                            waitingforescorting();
+                            break;
+                        case  "Doctor Consultant":
+                            doctorconsulting();
+                            break;
+                        
+
+                           };
+                   // window.alert("PATIENT ID'S IN ESCORTING STAGE\n"+text);
+                }
+            }
+        }
+function setColor(area,data,config,i,j,animPct,value)
+{
+    if(value > 35)return("rgba(220,0,0,"+animPct);
+    else return("rgba(0,220,0,"+animPct);
+
+}
+
+        var charJSPersonnalDefaultOptions = { decimalSeparator : "," , thousandSeparator : ".", roundNumber : "none", graphTitleFontSize: 2 };
+
+        defCanvasWidth=700;
+        defCanvasHeight=600;
+
+        var mydata2 = [
+            {
+                value : @arr[3],
+
+                color: "#40ff00",
+                title : doc
+
+            },
+            {
+                value : @arr[1],
+                color: "#ec1ccd",
+                title : escort
+            },
+            {
+                value : @arr[2],
+                color: "#ff0000",
+                title : refractiontest
+            },
+            {
+                value : @arr[5],
+                color: "#d9ac26",
+                title : waitingfordoc
+            },
+            {
+                value : @arr[0],
+                color: "#ecff00",
+                title : waitingforescort
+            },
+            {
+                value : @arr[6],
+                color: "#5f1200",
+                title : waitforiol
+            },
+            {
+                value :@arr[4],
+                color: "#587A5E",
+                title: waitingforref
+            },
+        ];
+
+
+        var startWithDataset =1;
+        var startWithData =1;
+
+        var opt1 = {
+            animationStartWithDataset : startWithDataset,
+            animationStartWithData : startWithData,
+            animateRotate : true,
+            animateScale : false,
+            animationByData : false,
+            animationSteps : 50,
+            canvasBorders : true,
+            canvasBordersWidth : 3,
+            canvasBordersColor : "black",
+            graphTitle : "Aravind Eye Hospital",
+            legend : true,
+            inGraphDataShow : true,
+            animationEasing: "linear",
+            annotateDisplay : true,
+            detectMouseOnText : true,
+            mouseDownLeft : displayText ,
+            spaceBetweenBar : 5,
+            graphTitleFontSize: 18
+
+        }
+        document.write("<canvas id=\"canvas_Pie1\" height=\"" + defCanvasHeight + "\" width=\"" + defCanvasWidth + "\"></canvas>");
+
+        window.onload = function () {
+
+
+            var myPie = new Chart(document.getElementById("canvas_Pie1").getContext("2d")).Pie(mydata2, opt1);
+        }
+        function escorting()
+        {
+
+            document.getElementById('b').innerHTML="<h3><u>PATIENTS IN ESCORTING STAGE</u></h3>"
+            document.getElementById('a').innerHTML="<h3>@escort</h3>"
+        }
+        function refractiontesting()
+        {
+            document.getElementById('b').innerHTML="<h3><u>PATIENTS IN REFRACTION TESTING</u></h3>"
+            document.getElementById('a').innerHTML="<h3>@refractiontest</h3>"
+        }
+        function waitingforrefractiontesting()
+        {
+            document.getElementById('b').innerHTML="<h3><u>PATIENTS WAITING FOR REFRACTION TESTING</u></h3>"
+            document.getElementById('a').innerHTML="<h3>@waitingforrefraction</h3>"
+        }
+        function waitingfordoctor()
+        {
+            document.getElementById('b').innerHTML="<h3><u>PATIENTS WAITING FOR DOCTOR</u></h3>"
+            document.getElementById('a').innerHTML="<h3>@waitingfordoctor</h3>"
+
+        }
+        function waitingforiol()
+        {
+            document.getElementById('b').innerHTML="<h3><u>PATIENTS WAITING FOR IOL</u></h3>"
+            document.getElementById('a').innerHTML="<h3>@waitingforiol</h3>"
+        }
+        function doctorconsulting()
+        {
+            document.getElementById('b').innerHTML="<h3><u>PATIENTS IN DOCTOR CONSULTATION</u></h3>"
+            document.getElementById('a').innerHTML="<h3>@doctorconsultant</h3>"
+        }
+        function waitingforescorting()
+        {
+            document.getElementById('b').innerHTML="<h3><u>PATIENTS WAITING FOR ESCORTING</u></h3>"
+            document.getElementById('a').innerHTML="<h3>@waitingforescort</h3>"
+        }
+
+
+    </script>
+
+
+
+    <div id="a" style="top:100px;left:750px;right:600px;position:absolute;z-index:1;"></div>
+    <div id="b" style="top:80px;left:750px;right:100px;position:absolute;z-index:1;"></div>
+
+    <h2> TOTAL NUMBER OF PATIENTS IN HOSPITAL : @arr[7]</h2>
+
+
+</body>
+</html>

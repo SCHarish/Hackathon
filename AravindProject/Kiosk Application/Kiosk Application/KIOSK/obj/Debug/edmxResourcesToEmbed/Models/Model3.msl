@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModel2StoreContainer" CdmEntityContainer="DatabaseEntities2">
+    <EntitySetMapping Name="Table2">
+      <EntityTypeMapping TypeName="DatabaseModel2.Table2">
+        <MappingFragment StoreEntitySet="Table2">
+          <ScalarProperty Name="sid" ColumnName="sid" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

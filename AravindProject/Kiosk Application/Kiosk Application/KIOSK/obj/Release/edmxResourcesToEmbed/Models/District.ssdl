@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="District_Master">
+    <Key>
+      <PropertyRef Name="DISTRICT_CODE" />
+    </Key>
+    <Property Name="DISTRICT_CODE" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DISTRICT_NAME" Type="nvarchar" MaxLength="255" />
+    <Property Name="STATE_CODE" Type="nvarchar" MaxLength="255" />
+    <Property Name="TOTAL_MALE_POPULATION" Type="float" />
+    <Property Name="TOTAL_FEMALE_POPULATION" Type="float" />
+    <Property Name="PERCENTAGE_OF_TOTAL_MALE_EYE_DEFECT_POPULATION" Type="float" />
+    <Property Name="PERCENTAGE_OF_TOTAL_FEMALE_EYE_DEFECT_POPULATION" Type="float" />
+    <Property Name="GIS_CODE" Type="nvarchar" MaxLength="255" />
+    <Property Name="district_grp" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="District_Master" EntityType="Self.District_Master" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,264 @@
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\ApplicationInsights.config
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\roslyn\csc.exe
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\roslyn\vbc.exe
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\roslyn\VBCSCompiler.exe
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\KIOSK.dll.config
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\KIOSK.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\KIOSK.pdb
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Antlr3.Runtime.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\EntityFramework.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\EntityFramework.SqlServer.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AI.Web.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.ApplicationInsights.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Security.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Newtonsoft.Json.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Owin.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\System.Web.Helpers.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\System.Web.Mvc.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\System.Web.Optimization.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\System.Web.Razor.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\System.Web.WebPages.Deployment.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\System.Web.WebPages.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\System.Web.WebPages.Razor.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\WebGrease.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AI.Web.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.ApplicationInsights.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\System.Web.Helpers.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\System.Web.Mvc.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\System.Web.Optimization.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\System.Web.Razor.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\System.Web.WebPages.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\System.Web.WebPages.Deployment.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\System.Web.WebPages.Razor.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Antlr3.Runtime.pdb
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Newtonsoft.Json.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\EntityFramework.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\EntityFramework.SqlServer.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Security.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\obj\Release\KIOSK.csprojResolveAssemblyReference.cache
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\obj\Release\KIOSK.dll
+C:\Users\h155724\Documents\Visual Studio 2015\Projects\KIOSK\KIOSK\obj\Release\KIOSK.pdb
+C:\Myproject\new kiosk\KIOSK\bin\ApplicationInsights.config
+C:\Myproject\new kiosk\KIOSK\bin\roslyn\csc.exe
+C:\Myproject\new kiosk\KIOSK\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Myproject\new kiosk\KIOSK\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Myproject\new kiosk\KIOSK\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Myproject\new kiosk\KIOSK\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Myproject\new kiosk\KIOSK\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Myproject\new kiosk\KIOSK\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Myproject\new kiosk\KIOSK\bin\roslyn\System.Collections.Immutable.dll
+C:\Myproject\new kiosk\KIOSK\bin\roslyn\System.Reflection.Metadata.dll
+C:\Myproject\new kiosk\KIOSK\bin\roslyn\vbc.exe
+C:\Myproject\new kiosk\KIOSK\bin\roslyn\VBCSCompiler.exe
+C:\Myproject\new kiosk\KIOSK\bin\roslyn\VBCSCompiler.exe.config
+C:\Myproject\new kiosk\KIOSK\bin\KIOSK.dll.config
+C:\Myproject\new kiosk\KIOSK\bin\KIOSK.dll
+C:\Myproject\new kiosk\KIOSK\bin\KIOSK.pdb
+C:\Myproject\new kiosk\KIOSK\bin\Antlr3.Runtime.dll
+C:\Myproject\new kiosk\KIOSK\bin\EntityFramework.dll
+C:\Myproject\new kiosk\KIOSK\bin\EntityFramework.SqlServer.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AI.DependencyCollector.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AI.Web.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AI.WindowsServer.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.ApplicationInsights.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Security.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Security.Google.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Web.Infrastructure.dll
+C:\Myproject\new kiosk\KIOSK\bin\Newtonsoft.Json.dll
+C:\Myproject\new kiosk\KIOSK\bin\Owin.dll
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Helpers.dll
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Mvc.dll
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Optimization.dll
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Razor.dll
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.WebPages.Deployment.dll
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.WebPages.dll
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.WebPages.Razor.dll
+C:\Myproject\new kiosk\KIOSK\bin\WebGrease.dll
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AI.DependencyCollector.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AI.Web.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AI.WindowsServer.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.ApplicationInsights.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Helpers.xml
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Mvc.xml
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Optimization.xml
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Razor.xml
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.WebPages.xml
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.WebPages.Deployment.xml
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.WebPages.Razor.xml
+C:\Myproject\new kiosk\KIOSK\bin\Antlr3.Runtime.pdb
+C:\Myproject\new kiosk\KIOSK\bin\Newtonsoft.Json.xml
+C:\Myproject\new kiosk\KIOSK\bin\EntityFramework.xml
+C:\Myproject\new kiosk\KIOSK\bin\EntityFramework.SqlServer.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Security.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Security.Google.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Myproject\new kiosk\KIOSK\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Myproject\new kiosk\KIOSK\obj\Release\KIOSK.csprojResolveAssemblyReference.cache
+C:\Myproject\new kiosk\KIOSK\obj\Release\KIOSK.dll
+C:\Myproject\new kiosk\KIOSK\obj\Release\KIOSK.pdb
+C:\Myproject\new kiosk\KIOSK\bin\System.Net.Http.Formatting.dll
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Http.dll
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Http.WebHost.dll
+C:\Myproject\new kiosk\KIOSK\bin\System.Net.Http.Formatting.xml
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Http.xml
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Http.WebHost.xml
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Cors.dll
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Http.Cors.dll
+C:\Myproject\new kiosk\KIOSK\bin\System.Web.Http.Cors.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\ApplicationInsights.config
+C:\Myproject\Kiosk Application\KIOSK\bin\roslyn\csc.exe
+C:\Myproject\Kiosk Application\KIOSK\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Myproject\Kiosk Application\KIOSK\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Myproject\Kiosk Application\KIOSK\bin\roslyn\System.Collections.Immutable.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\roslyn\System.Reflection.Metadata.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\roslyn\vbc.exe
+C:\Myproject\Kiosk Application\KIOSK\bin\roslyn\VBCSCompiler.exe
+C:\Myproject\Kiosk Application\KIOSK\bin\roslyn\VBCSCompiler.exe.config
+C:\Myproject\Kiosk Application\KIOSK\bin\KIOSK.dll.config
+C:\Myproject\Kiosk Application\KIOSK\bin\KIOSK.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\KIOSK.pdb
+C:\Myproject\Kiosk Application\KIOSK\bin\Antlr3.Runtime.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\EntityFramework.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\EntityFramework.SqlServer.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AI.DependencyCollector.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AI.Web.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AI.WindowsServer.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.ApplicationInsights.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Security.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Security.Google.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Web.Infrastructure.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Newtonsoft.Json.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Owin.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Net.Http.Formatting.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Cors.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Helpers.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Http.Cors.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Http.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Http.WebHost.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Mvc.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Optimization.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Razor.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.WebPages.Deployment.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.WebPages.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.WebPages.Razor.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\WebGrease.dll
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AI.DependencyCollector.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AI.Web.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AI.WindowsServer.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.ApplicationInsights.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Net.Http.Formatting.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Http.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Http.Cors.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Http.WebHost.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Helpers.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Mvc.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Optimization.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.Razor.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.WebPages.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.WebPages.Deployment.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\System.Web.WebPages.Razor.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Antlr3.Runtime.pdb
+C:\Myproject\Kiosk Application\KIOSK\bin\Newtonsoft.Json.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\EntityFramework.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\EntityFramework.SqlServer.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Security.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Security.Google.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Myproject\Kiosk Application\KIOSK\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Myproject\Kiosk Application\KIOSK\obj\Release\KIOSK.csprojResolveAssemblyReference.cache
+C:\Myproject\Kiosk Application\KIOSK\obj\Release\KIOSK.dll
+C:\Myproject\Kiosk Application\KIOSK\obj\Release\KIOSK.pdb

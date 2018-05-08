@@ -1,0 +1,63 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href='~/Content/bootstrap.css'>
+    <link rel="stylesheet" href='~/Content/font-awesome.css'>
+  
+</head>
+<style type="text/css">
+    .whi{color:White;}
+    .square {
+    
+    width: 50vw;
+    height: 50vw;
+}
+</style>
+<body style="background-color:#24313f">
+    
+    <!--input type="submit" name="Command" value="Registration" onclick="@Html.ActionLink("form","~/regForm/PatientRegistrationForm")">
+        <input type="submit" name="Command" value="PIN based Batch" /-->
+
+
+
+
+        <div class="col-sm-6 col-md-3" style="position:absolute;left:300px;top:220px">
+            <div class="btn-warning">
+                <a href=@Url.Action("Form","form") class="fa-links whi square">
+                    <center>
+                        <h2>New Patient Registration</h2>
+                        <i class="fa fa-pencil-square-o fa-links" style="font-size:48px"></i>
+                        <br />
+                        <br />
+                       
+                    </center>
+                </a>
+
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4" style="position:absolute;left:650px;top:220px">
+            <div class="tile tile-medium tile-orange btn-success">
+                <a href=@Url.Action("Sample1","Home") class="fa-links whi square">
+                    <center>
+                        <h2>Follow Up/Already Registered Patients</h2>
+                        <i class="fa fa-3x fa-newspaper-o" style="font-size:48px"></i>
+                        <br />
+                        <br />
+                    </center>
+                </a>
+            </div>
+        </div>
+
+
+
+
+
+</body>
+</html>

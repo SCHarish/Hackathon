@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityType Name="District_Master">
+    <Key>
+      <PropertyRef Name="DISTRICT_CODE" />
+    </Key>
+    <Property Name="DISTRICT_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DISTRICT_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="STATE_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TOTAL_MALE_POPULATION" Type="Double" />
+    <Property Name="TOTAL_FEMALE_POPULATION" Type="Double" />
+    <Property Name="PERCENTAGE_OF_TOTAL_MALE_EYE_DEFECT_POPULATION" Type="Double" />
+    <Property Name="PERCENTAGE_OF_TOTAL_FEMALE_EYE_DEFECT_POPULATION" Type="Double" />
+    <Property Name="GIS_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="district_grp" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="Entities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="District_Master" EntityType="Self.District_Master" />
+  </EntityContainer>
+</Schema>

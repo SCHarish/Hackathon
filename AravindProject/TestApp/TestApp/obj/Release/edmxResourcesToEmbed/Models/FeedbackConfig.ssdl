@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ARAVIND_DBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="FeedConfig">
+    <Key>
+      <PropertyRef Name="qno" />
+    </Key>
+    <Property Name="qno" Type="int" Nullable="false" />
+    <Property Name="Question" Type="varchar" MaxLength="50" />
+    <Property Name="Dt" Type="datetime" />
+    <Property Name="Location" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="FeedsConfig_Backup">
+    <Key>
+      <PropertyRef Name="qno" />
+    </Key>
+    <Property Name="qno" Type="int" Nullable="false" />
+    <Property Name="Question" Type="varchar" MaxLength="50" />
+    <Property Name="Flag" Type="bigint" />
+    <Property Name="Location" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityContainer Name="ARAVIND_DBModel1StoreContainer">
+    <EntitySet Name="FeedConfig" EntityType="Self.FeedConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeedsConfig_Backup" EntityType="Self.FeedsConfig_Backup" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

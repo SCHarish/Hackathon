@@ -1,0 +1,115 @@
+﻿@using System.Configuration;
+@{
+
+    String noofregistrations = ConfigurationManager.AppSettings["noofregistration"];
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width" />
+    <title>Home page</title>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <!-- Custom CSS -->
+    <!-- Custom Fonts -->
+    <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css">
+
+    <link href="~/Content/metro.css" rel="stylesheet">
+    <link href="~/Content/metro-icons.css" rel="stylesheet">
+    <link href="~/Content/metro-responsive.css" rel="stylesheet">
+    <link href="~/Content/metro-schemes.css" rel="stylesheet">
+    <link href="~/Content/docs.css" rel="stylesheet">
+    <script src="~/Scripts/metro.js"></script>
+
+
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+            a:hover {
+                color: white;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        .hand {
+            cursor: pointer;
+            cursor: hand;
+        }
+        .container-full {
+  margin: 0 auto;
+  width: 100%;
+}
+    </style>
+
+</head>
+
+<body>
+    <div id="d3" style="position:absolute;top:0px;left:0px;border:solid black 0px;width:100%;height:100px;background-color:lightgray"><center><h2 style="padding-top:10px;color:navy"><b>ARAVIND EYE HOSPITAL</b></h2></center></div>
+    
+
+    <div class="container">
+        <div class="row" style="margin-top:150px">
+            <center>
+                <div id="registrationcount">
+
+                </div>
+            </center>
+        </div>
+        <div class="row">
+            <div id="d1" class="col-sm-6  bg-green col-sm-pull-1 hand" style="margin-top:120px;border:solid black 0px">
+                <center>
+                    <a href=@Url.Action("Form","form") class="fa-links whi square" />
+                    <h2 style="color:white">New Patient Registration</h2>
+                    <i class="fa fa-pencil-square-o fa-links" style="font-size:90px;color:white"></i>
+                </center>
+            </div>
+            <div id="d2" class="col-sm-6 col-sm-push-1  bg-orange hand" style="margin-top:120px;border:solid black 0px">
+
+                <center>
+                    <a href=@Url.Action("qrscan","Home") class="fa-links whi square" />
+                    <font style="font-size:26px; color:white">Follow up/Already Registered Patients &nbsp;&nbsp;</font>
+                    <br />
+                    <i class="fa fa-3x fa-newspaper-o" style="font-size:90px;color:white"></i>
+                </center>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var noofregistration = "@Html.Raw(HttpUtility.JavaScriptStringEncode(noofregistrations))";
+            $.ajax({
+                url: noofregistration,
+                crossOrgin: true, // use jsonp for cross origin request
+                dataType: 'json',
+                type: 'GET',
+                success: function (data) {
+                   
+                    document.getElementById("registrationcount").innerHTML = "<h3>Total New Registration done today is " + data + "</h3>";
+                    
+                   
+                }, error: function () {
+
+                }
+            });
+        
+
+            $("#d1").click(function () {
+                var url = '@Url.Action("form", "Form")';
+                window.location.href = url;
+            });
+            $("#d2").click(function () {
+                var url = '@Url.Action("qrscan", "Home")';
+                window.location.href = url;
+            });
+        });
+
+    </script>
+
+</body>
+</html>

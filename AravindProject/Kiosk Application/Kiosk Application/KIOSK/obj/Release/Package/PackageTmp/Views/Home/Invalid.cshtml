@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href='~/Content/bootstrap.css'>
+    <link rel="stylesheet" href='~/Content/font-awesome.css'>
+    <title>Invalid</title>
+    <script>
+    function f1()
+    {
+    var url = '@Url.Action("Sample1", "Home")';
+    window.location.href = url;
+    }
+    </script>
+</head>
+<body>
+    <center>
+        <div>
+            <center><h3 style="padding-top:200px">Invalid Medical Record Number</h3></center>
+          
+        </div>
+    </center>  
+    <script>
+        setTimeout(f1, 5000);
+    </script>
+</body>
+</html>

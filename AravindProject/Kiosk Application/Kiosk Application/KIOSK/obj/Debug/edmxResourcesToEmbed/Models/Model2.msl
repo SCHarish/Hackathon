@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModel1StoreContainer" CdmEntityContainer="DatabaseEntities1">
+    <EntitySetMapping Name="Tables">
+      <EntityTypeMapping TypeName="DatabaseModel1.Table">
+        <MappingFragment StoreEntitySet="Table">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="did" ColumnName="did" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table1">
+      <EntityTypeMapping TypeName="DatabaseModel1.Table1">
+        <MappingFragment StoreEntitySet="Table1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="district" ColumnName="district" />
+          <ScalarProperty Name="stid" ColumnName="stid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

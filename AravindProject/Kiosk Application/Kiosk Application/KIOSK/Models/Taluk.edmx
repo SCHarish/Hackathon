@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityType Name="Taluk_Master">
+          <Key>
+            <PropertyRef Name="TALUK_CODE" />
+          </Key>
+          <Property Name="TALUK_CODE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TALUK_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="DISTRICT_CODE" Type="varchar" MaxLength="10" />
+          <Property Name="GIS_CODE" Type="varchar" MaxLength="4" />
+          <Property Name="taluk_grp" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Taluk_Master" EntityType="Self.Taluk_Master" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="Entities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Taluk_Master" EntityType="Model.Taluk_Master" />
+        </EntityContainer>
+        <EntityType Name="Taluk_Master">
+          <Key>
+            <PropertyRef Name="TALUK_CODE" />
+          </Key>
+          <Property Name="TALUK_CODE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TALUK_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DISTRICT_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GIS_CODE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="taluk_grp" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities3">
+          <EntitySetMapping Name="Taluk_Master">
+            <EntityTypeMapping TypeName="Model.Taluk_Master">
+              <MappingFragment StoreEntitySet="Taluk_Master">
+                <ScalarProperty Name="taluk_grp" ColumnName="taluk_grp" />
+                <ScalarProperty Name="GIS_CODE" ColumnName="GIS_CODE" />
+                <ScalarProperty Name="DISTRICT_CODE" ColumnName="DISTRICT_CODE" />
+                <ScalarProperty Name="TALUK_NAME" ColumnName="TALUK_NAME" />
+                <ScalarProperty Name="TALUK_CODE" ColumnName="TALUK_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams />
+  </Designer>
+</edmx:Edmx>

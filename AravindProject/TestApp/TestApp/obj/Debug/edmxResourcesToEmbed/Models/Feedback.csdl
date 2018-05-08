@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PatientDBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="feedback">
+    <Key>
+      <PropertyRef Name="PIN" />
+    </Key>
+    <Property Name="sno" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="PIN" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" Type="String" />
+    <Property Name="Doctor_Consultancy" MaxLength="10" FixedLength="true" Unicode="true" Type="String" />
+    <Property Name="Staff_Behaviour" MaxLength="10" FixedLength="true" Unicode="true" Type="String" />
+    <Property Name="Environment" MaxLength="10" FixedLength="true" Unicode="true" Type="String" />
+    <Property Name="remarks" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="Dt" Precision="3" Type="DateTime" />
+  </EntityType>
+  <EntityContainer Name="PatientDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="feedbacks" EntityType="Self.feedback" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PatientDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="feedback">
+    <Key>
+      <PropertyRef Name="PIN" />
+    </Key>
+    <Property Name="sno" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+    <Property Name="PIN" Nullable="false" MaxLength="10" Type="nchar" />
+    <Property Name="Doctor_Consultancy" MaxLength="10" Type="nchar" />
+    <Property Name="Staff_Behaviour" MaxLength="10" Type="nchar" />
+    <Property Name="Environment" MaxLength="10" Type="nchar" />
+    <Property Name="remarks" MaxLength="100" Type="varchar" />
+    <Property Name="Dt" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="PatientDBModel1StoreContainer">
+    <EntitySet Name="feedback" EntityType="Self.feedback" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

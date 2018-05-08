@@ -1,0 +1,248 @@
+﻿@model KIOSK.Models.OTP
+
+@{
+    Layout = null;
+
+}
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.css"/>
+    <link rel="stylesheet" href="~/Content/font-awesome.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-1.11.1.js"></script>
+    <link rel="stylesheet" href='~/Content/jquery-ui.css' />
+   
+        <style type="text/css">
+         #errmsg 
+         {
+            color: red;
+        }
+         .myclass1{
+             position:absolute;
+             left:5px;
+             top:80px;
+             height:500px;
+             width:600px;
+         }
+          .myclass2{
+             position:absolute;
+             left:895px;
+             top:80px;
+             
+             height:500px;
+             width:600px;
+         }
+       .myclass3{
+           position:absolute;
+           top:20px;
+           left:70px;
+       }
+        .myclass4{
+           position:absolute;
+           top:20px;
+           left:1000px;
+       }
+         .myclass5{
+           position:absolute;
+           top:300px;
+           left:700px;
+       }
+         .myclass6{
+           position:absolute;
+           top:40px;
+           left:120px;
+           height:50px;
+       }
+         .myclass7{
+             position:absolute;
+             top:55px;
+             left:250px;
+             font-size:18px;
+
+         }
+         .myclass8{
+             position:absolute;
+             top:40px;
+             left:210px;
+             height:50px;
+             width:200px;
+
+         }
+          .myclass9{
+             position:absolute;
+             top:150px;
+             left:350px;
+            width:100px;
+            height:50px;
+            
+
+         }
+           .myclass10{
+             position:absolute;
+             top:150px;
+             left:150px;
+            width:100px;
+            height:50px;
+         
+
+         }
+            .myclass11{
+             position:absolute;
+             top:164px;
+             left:155px;
+             font-size:21px;
+             color:white;
+             z-index:1
+         }
+              .myclass12{
+             position:absolute;
+             top:164px;
+             left:357px;
+             font-size:21px;
+             color:white;
+             z-index:1
+         }
+           .field-validation-error {color: #f00;}
+.field-validation-valid { display: none;}
+.input-validation-error { border: 1px solid #f00; background-color: #fee; }
+.validation-summary-errors { font-weight: bold; color: #f00;}
+.validation-summary-valid { display: none;}
+input[type="submit"] {
+   
+    padding-left: 30px;
+}
+.s1:after {
+    font-family: FontAwesome;
+    content: "\f112";
+    font-size: 18px;
+    color:white;
+    position: absolute;
+    left: 100px;
+    top: 265px;
+    pointer-events: none;
+    z-index:1
+}
+.s2:after {
+    font-family: FontAwesome; 
+    content: "\f144";
+    font-size: 18px;
+    color:white;
+    position: absolute;
+    left: 200px;
+    top: 265px;
+    pointer-events: none;
+}
+    </style>
+    <script>
+        
+        $(document).ready(function () {
+            var a = document.getElementById('t1');
+            var b = document.getElementById('t2');
+            a.onkeyup = function () {
+                if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
+                    b.focus();
+                }
+            }
+        });
+        function f2() {
+            var url = '@Url.Action("Sample1", "Home")';
+            window.location.href = url;
+
+        }
+       
+    </script>
+</head>
+
+<body style="background-color:lightgoldenrodyellow" >
+    <center>
+       <!--<div style="position:relative;height:100px;width:100%;border:solid black 1px;background-color:lightgrey"></div>-->
+        <div style="position:relative;height:1000px;width:1500px;border:solid black 0px;left:10px">
+          <h1 class="myclass3"  style="font-family:PT Serif Caption;font-style: normal;font-weight:400;">Show your QR code here</h1>
+            <div class="myclass1" style="border:solid black 0px"> <canvas id="qr-canvas" style="position:absolute;padding-top:10px;left:0px" width="500" height="500"></canvas></div>
+            <h1 class="myclass5" style="font-family:PT Serif Caption;font-style: normal;font-weight:400;">( OR )</h1>
+            <h1 class="myclass4" style="font-family:PT Serif Caption;font-style: normal;font-weight:400;">Enter your MR No. here</h1>
+            <div id="mrno" class="myclass2" style="border:solid black 0px">
+            @using (Html.BeginForm())
+            {
+                <div class="col-sm-0">
+                    @Html.TextBoxFor(model => model.pin, new
+               {
+                   @id = "t1",
+                   @class = "form-control myclass6",
+                   @placeholder = "432",
+                   @autocomplete = "off",
+                   @maxlength = "3"
+               })
+                </div>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(model => model.MRNO, new
+               {
+                   @id = "t2",
+                   @class = "form-control myclass8",
+                   @placeholder = "1000",
+                   @autocomplete = "off",
+                   @maxlength = "4"
+               })
+                </div>
+        
+                <i class="fa fa-reply myclass11"></i>
+                <i class="fa fa-play-circle myclass12"></i>
+                <input type="submit" class="btn btn-success myclass9 s1" id="b1" value="SUBMIT" />
+                <input type="BACK" class="btn btn-primary myclass10 s2"  style="padding-left:30px"id="b1" value="BACK" onclick="f2()"/>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(model => model.pattern, new
+           {
+               @id = "mrid",
+               @class = "form-control",
+               @placeholder = "1000",
+               @autocomplete = "off",
+               @maxlength = "9",
+               @style="display:none"
+           })
+                </div>
+            }
+                <i class="fa fa-minus myclass7"></i>
+               
+            </div>
+            
+            
+            <img src="~/Pictures/idcard.png" style="position:absolute;left:870px;top:350px" />
+            <i class="glyphicon glyphicon-hand-right animated shake infinite" style="position:absolute;top:370px;left:910px;font-size:49px"></i>
+        </div>
+    </center>
+    <script>
+       
+    //setTimeout(f1, 20000);
+    function f1()
+    {
+        var url = '@Url.Action("Sample1", "Home")';
+        window.location.href = url;
+    }
+        $('#t1').keypress(function (e)
+        {
+            if (e.which != 8 && e.which != 0 && e.which != 43 && e.which != 45 && (e.which < 48 || e.which > 57))
+            {
+                //display error message
+                $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+        });
+        $('#t2').keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && e.which != 43 && e.which != 45 && (e.which < 48 || e.which > 57)) {
+                //display error message
+                $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+        });
+    </script>
+</body>
+<script type="text/javascript" src="~/Scripts/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="~/js/qrcodelib.js"></script>
+<script type="text/javascript" src="~/js/WebCodeCam.js"></script>
+<script type="text/javascript" src="~/js/main.js"></script>
+</html>

@@ -1,0 +1,87 @@
+﻿@using System.Configuration;
+@{ 
+
+    String noofregistrations = ConfigurationManager.AppSettings["noofregistration"];
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width" />
+    <title>Home page</title>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <!-- Custom CSS -->
+
+    <!-- Custom Fonts -->
+    <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css">
+
+    <link href="~/Content/metro.css" rel="stylesheet">
+    <link href="~/Content/metro-icons.css" rel="stylesheet">
+    <link href="~/Content/metro-responsive.css" rel="stylesheet">
+    <link href="~/Content/metro-schemes.css" rel="stylesheet">
+    <link href="~/Content/docs.css" rel="stylesheet">
+    <script src="~/Scripts/metro.js"></script>
+    
+  
+    <style>
+       a {
+     text-decoration: none ;
+  }
+a:hover
+  {
+    color:white;
+    text-decoration:none;
+    cursor:pointer;
+   }
+       
+    </style>
+
+</head>
+
+<body>
+ 
+    <!-- Navigation -->
+    <center>
+        <div id="d3" style="position:absolute;top:0px;left:0px;border:solid black 0px;width:100%;height:100px;background-color:lightgray"><center><h2 style="padding-top:10px;color:navy"><b>ARAVIND EYE HOSPITAL</b></h2></center></div>
+     
+            <!-- Header -->
+            
+           
+            <center>
+                <div>
+                    <div id="d1" class="tile-large bg-green" data-role="tile" style="border:solid black 0px;margin-top:150px;padding-top:10px">
+                        <a href=@Url.Action("Form","form") class="fa-links whi square" />
+                        <h2 style="color:white">New Patient Registration</h2>
+                        <i class="fa fa-pencil-square-o fa-links" style="font-size:90px;color:white"></i>
+                    </div>
+                </div>
+            </center>
+            
+          <div id="d2" class="tile-large bg-orange" data-role="tile" style="position:absolute;left:800px;top:200px;border:solid black 0px">
+                <a href=@Url.Action("Index","Home") class="fa-links whi square" />
+                <h2 style="color:white">Follow up/Already Registered Patients</h2>
+                <i class="fa fa-3x fa-newspaper-o" style="font-size:90px;color:white"></i>
+            </div>
+
+       
+    </center>
+    <script>
+        $(document).ready(function () {
+            $("#d1").click(function () {
+                var url = '@Url.Action("form", "Form")';
+                window.location.href = url;
+            });
+            $("#d2").click(function () {
+                var url = '@Url.Action("Index", "Home")';
+                window.location.href = url;
+            });
+        });
+   
+    </script>
+   
+</body>
+</html>

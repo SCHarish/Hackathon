@@ -1,0 +1,1600 @@
+﻿@using System.Configuration;
+@{
+    Layout = null;
+    ViewBag.Title = "";
+
+
+    String url = ConfigurationManager.AppSettings["getquestions"];
+    String url1 = ConfigurationManager.AppSettings["feedbackupdate"];
+    String feedbackresults = ConfigurationManager.AppSettings["feedbackresults"];
+    String listofmrnoandnames = ConfigurationManager.AppSettings["listofmrnoandnames"];
+    String getalllocations = ConfigurationManager.AppSettings["getallzones"];
+    String feedbackresultsmodified = ConfigurationManager.AppSettings["feedbackresultsmodified"];
+    String checkpatterns = ConfigurationManager.AppSettings["checkpatterns"];
+    String getallquestionsfrombackup = ConfigurationManager.AppSettings["Getallquestionsfrombackup"];
+    String listofmrnoandnamesforbackup = ConfigurationManager.AppSettings["listofmrnoandnamesforbackup"];
+    String startdate = ConfigurationManager.AppSettings["getstartdate"];
+    String enddate = ConfigurationManager.AppSettings["gettodate"];
+    String exportpatterntoexcel = ConfigurationManager.AppSettings["exportpatterntoexcel"];
+    String path = ConfigurationManager.AppSettings["location"];
+    String resultmatrix = ConfigurationManager.AppSettings["resultmatrix"];
+}
+
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <link rel="stylesheet" href='~/Content/bootstrap.css'>
+    <link rel="stylesheet" href='~/Content/font-awesome.css'>
+    <link rel="stylesheet" href='~/Content/bootstrap.css'>
+    <link rel="stylesheet" href="~/Content/datepicker.css" />
+    <link rel="stylesheet" href="~/Content/jquery-ui.css" />
+    <script type="text/javascript" src="~/scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/scripts/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="~/scripts/jquery.ui.datepicker.js"></script>
+    <script src="~/scripts/ChartNew.js"></script>
+    <script src="~/scripts/bootstrap.js"></script>
+    <script src="~/scripts/shapesInChart.js"></script>
+    <script src="~/scripts/highcharts.js"></script>
+
+
+    <script>
+        var feedconfigquestions = [];
+        var questions = [];
+        var patternstoexport = [];
+        var startdateseries = [];
+        var enddateseries = [];
+        var tempstartdateseries;
+        var tempenddateseries;
+        var totalhappy = 0, totalsatisfied = 0, totalunhappy = 0;
+        var zone="ALL";
+        var count = 0;
+        var d, d1;
+	var plserieshappy=[],plseriessatisfied=[],plseriesunhappy=[];
+        function resetFn()
+    {
+            $('#datepicker-1').val('');
+            $('#datepicker-2').val('');
+        window.location.reload();
+    }
+    $(function()
+    {
+        var check1=$('#datepicker-1').val();
+        var check2 = $('#datepicker-2').val();
+
+        var check3= $('#zones').find(':selected').val();
+        if(check1!=""&&check2!=""&&check3!="")
+        {
+            document.getElementById("ok").disabled=true;
+        }
+    else
+    {
+        document.getElementById("ok").disabled=false;
+    }
+
+    });
+        $(function () {
+
+            $('#datepicker-1').datepicker({
+                autoclose: true,
+                format: 'mm/dd/yyyy',
+                changeMonth: true,
+                changeYear:true,
+                yearRange: '1900:+0',
+                maxDate: new Date,
+             onSelect: function (selected, evnt)
+             {
+     var check1=$('#datepicker-1').val();
+     var check2 = $('#datepicker-2').val();
+    var check3= $('#zones').find(':selected').val();
+                    if(check1!=""&&check2!=""&&check3!="")
+    {
+    document.getElementById("ok").disabled=false;
+    }
+    else
+    {
+    document.getElementById("ok").disabled=true;
+    }
+
+             }
+
+
+        });
+
+
+            $("#datepicker-2").datepicker({
+                autoclose: true,
+                format: 'mm/dd/yyyy',
+                changeMonth: true,
+                changeYear:true,
+                yearRange: '1900:+0',
+                maxDate: new Date,
+
+                onSelect: function (selected, evnt)
+                {
+     var check1=$('#datepicker-1').val();
+     var check2 = $('#datepicker-2').val();
+    var check3= $('#zones').find(':selected').val();
+                    if(check1!=""&&check2!=""&&check3!="")
+    {
+    document.getElementById("ok").disabled=false;
+    }
+    else
+    {
+    document.getElementById("ok").disabled=true;
+    }
+                }
+
+        });
+    });
+        $(document).ready(function () {
+            //alert($('#datepicker-1').val());
+            //alert(zone);
+            $('#ok').click();
+            $('#customPathText').hide();
+            $('input[name=path]:radio').change(function () {
+                //alert(this.value);
+                if (this.value == 'customPath') {
+                    //alert("entered");
+                    $('#customPathText').show();
+                }
+                if (this.value == "defaultPath") {
+
+                    $('#customPathText').hide();
+                }
+            });
+
+            var date = new Date();
+            var currdate=(date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+            $('#datepicker-2').val(currdate);
+            $('#datepicker-1').val(currdate);
+            document.getElementById("ok").disabled = true;
+            document.getElementById("datepicker-1").disabled = false;
+            document.getElementById("datepicker-2").disabled = false;
+            document.getElementById("zones").disabled = false;
+            $('#reset').hide();
+            $('#export').hide();
+            // $('#selectall').hide();
+
+            var getalllocations = "@Html.Raw(HttpUtility.JavaScriptStringEncode(getalllocations))";
+
+            $.ajax({
+                url: getalllocations,
+                crossOrgin: true, // use jsonp for cross origin request
+                dataType: 'json',
+                type: 'GET',
+                success: function (data) {
+                    size = data.length;
+                    numberoflocations = size;
+                    for (var i = 1; i < size + 1 ; i++) {
+                        document.getElementById("zones").innerHTML += "<option value=\'" + data[i - 1].Zone_Name + "\'>" + data[i - 1].Zone_Name + "</option>";
+
+
+                    }
+                    // document.getElementById("zones").innerHTML += "<option value=\'" + data[i - 1].Zone_Name + "\'>" + data[i - 1].Zone_Name + "</option>";
+                }, error: function () {
+
+                }
+            });
+            $("#zones").change(function () {
+                // jQuery
+                var selectedVal = $(this).find(':selected').val();
+                var selectedText = $(this).find(':selected').text();
+                zone = selectedVal;
+                // alert("Currently selected zone is " + selectedVal);
+                var check1=$('#datepicker-1').val();
+                var check2=$('#datepicker-2').val();
+                if(check1!=""&&check2!=""&&zone!="")
+                {
+                    document.getElementById("ok").disabled=false;
+                }
+                else
+                {
+                    document.getElementById("ok").disabled=true;
+                }
+
+            });
+
+            //New implementation(Default PIE)
+
+
+            var questionsfromfeedconfig= "@Html.Raw(HttpUtility.JavaScriptStringEncode(url))";
+            $.ajax({
+                url: questionsfromfeedconfig,
+                crossOrgin: true, // use jsonp for cross origin request
+
+                dataType: 'json',
+                type: 'GET',
+                async: false,
+                success: function (data)
+                {
+                    // alert(data.length);
+                    for (var i = 0; i < data.length; i++) {
+                        feedconfigquestions[i] = data[i].Question;
+
+                    }
+                    // alert(feedconfigquestions[2]);
+                }, error: function ()
+                {
+
+                }
+            });
+
+
+
+            });
+
+        function drawStackedBarChart()
+        {
+           // alert(feedconfigquestions[2]);
+            $('#container-bar').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                colors: ['#558000', '#ffcc00', '#ff3333'],
+
+                title: {
+                    text: 'Feedback Results'
+                },
+                xAxis: {
+                    categories: feedconfigquestions
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Total Patient Count'
+                    },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        }
+                    }
+                },
+                legend: {
+                    align: 'right',
+                    x: -30,
+                    verticalAlign: 'top',
+                    y: 25,
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                    borderColor: '#CCC',
+                    borderWidth: 1,
+                    shadow: false
+                },
+                tooltip: {
+                    headerFormat: '<b>{point.x}</b><br/>',
+                    pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+                },
+                plotOptions: {
+
+                    column: {
+                        stacking: 'normal',
+                        cursor:'pointer',
+                        point:{
+                            events:{
+                                click:function(){
+                                    //alert(this.category);
+                                    //alert(this.index);
+                                    //alert(this.series.name);
+                                    //console.log({ series: name });
+                                   displaymrid(this.index, this.series.name, d, d1,"ALL");
+                                }
+                            }
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            }
+                        }
+                    }
+                },
+
+                series: [{
+                    name: 'Happy',
+                    data: plserieshappy
+                },  {
+                    name: 'Satisfied',
+                    data: plseriessatisfied
+                },
+		 {
+                    name: 'Unhappy',
+                    data: plseriesunhappy
+		 }]
+
+            });
+
+
+        }
+        function getResults() {
+     //alert("Zone is "+zone);
+            if(zone==undefined)
+            {
+                alert("please select zone");
+            }
+            else if($("#datepicker-1").val()=="")
+            {
+                alert("please select start date");
+            }
+            else if($("#datepicker-2").val()=="")
+            {
+                alert("please select end date");
+            }
+            else
+            {
+            count = 0;
+            //alert($("#datepicker-1").val());
+            d=$("#datepicker-1").val();
+            //alert($("#datepicker-2").val());
+            d1 = $("#datepicker-2").val();
+            document.getElementById("ok").disabled = true;
+            //$('#ok').hide();
+                    document.getElementById("datepicker-1").disabled = true;
+                    document.getElementById("datepicker-2").disabled = true;
+                    document.getElementById("zones").disabled = true;
+                    var check1 = $('#datepicker-1').val();
+                    var check2 = $('#datepicker-2').val();
+
+                    var check3 = $('#zones').find(':selected').val();
+                    if (check1 != "" && check2 != "" && check3 != "") {
+                        document.getElementById("ok").disabled = true;
+                    }
+                       $('#reset').show();
+                       $('#export').show();
+                      // $('#selectall').show();
+
+            var checkpatterns = "@Html.Raw(HttpUtility.JavaScriptStringEncode(checkpatterns))";
+            var availablepatterns=[];
+            var matrix = new Array([]);
+            $.ajax({
+                url: checkpatterns+d+"&d1="+d1+"&zone="+zone,
+                crossOrgin: true, // use jsonp for cross origin request
+
+                dataType: 'json',
+                type: 'GET',
+                success: function (data)
+                {
+                    //alert('sadf');
+
+                    //alert(data);
+                    console.log(data);
+                    if (data.length)
+                    {
+
+                        //alert("if called");
+                        var size = data.length;
+                        document.getElementById("availablepatterns").innerHTML = "";
+                        for (var i = 1; i < size + 1; i++)
+                        {
+                            availablepatterns[i - 1] = data[i - 1];
+                            patternstoexport[i - 1] = data[i - 1];
+                            count++;
+                            $('#dropdownlistofpatterns').removeClass("hidden");
+                            document.getElementById("dropdownlistofpatterns").innerHTML+="<option id=chartpattern"+data[i-1]+" value="+i+"  onclick=drawChartWithPattern(this.id)>"+"Questionnaire Set "+count+"</option>"
+                       // document.getElementById("exporttoexcel").innerHTML += "<input id=exportpattern" + data[i - 1] + " type=\"checkbox\"/><br/><br/>";
+
+                            //    var pat=document.getElementById("availablepatterns");
+                    //        document.createElement()
+
+
+
+                        }
+
+                        setStartAndEndDate(availablepatterns);
+                      }
+                    else
+                    {
+                        //alert("else callled");
+
+                    }
+                    getResult1(count);
+
+
+                },
+                error: function ()
+                {
+
+                }
+            });
+    }
+
+        }
+
+
+
+    function setStartAndEndDate(patterns)
+    {
+        //alert(patterns.length);
+        var startdate = "@Html.Raw(HttpUtility.JavaScriptStringEncode(startdate))";
+        var enddate = "@Html.Raw(HttpUtility.JavaScriptStringEncode(enddate))";
+        setTimeout(function () {
+
+            for (var i = 0; i < patterns.length; i++)
+            {
+
+                         $.ajax({
+                                        url:startdate+patterns[i]+"&lookup=Feeds_BackUp&zone="+zone+"&d="+d+"&d1="+d1,
+                                        CrossOrgin:true,
+                                        type:'GET',
+                                        async: false,
+                                        success:function(result)
+                                        {
+                                                var temp=JSON.stringify(result);
+                                                temp=temp.replace("T00:00:00","");
+                                                 temp=temp.replace("[\"","");
+                                                 temp = temp.replace("\"]", "");
+                                                 startdateseries[i] = temp;
+                                                document.getElementById("chartpattern"+patterns[i]).innerHTML+=" From : "+temp;
+
+                                        }
+                                });
+
+
+
+            }
+
+            for (var i = 0; i < patterns.length; i++)
+            {
+
+                         $.ajax({
+                                        url:enddate+patterns[i]+"&lookup=Feeds_BackUp&zone="+zone+"&d="+d+"&d1="+d1,
+                                        CrossOrgin:true,
+                                        type:'GET',
+                                        async: false,
+                                        success:function(result)
+                                        {
+                                            //  alert(result);
+                                                var temp=JSON.stringify(result);
+                                                temp=temp.replace("T00:00:00","");
+                                                temp=temp.replace("[\"","");
+                                                temp = temp.replace("\"]", "");
+                                                enddateseries[i] = temp;
+                                                document.getElementById("chartpattern"+patterns[i]).innerHTML+=" To : "+temp;
+                                        }
+                                });
+
+
+
+            }
+                            },1000);
+    }
+
+        function getmrnoandnames()
+        {
+
+        }
+        function getResult1(cnt) {
+            var flag = 0;
+    var startdate = "@Html.Raw(HttpUtility.JavaScriptStringEncode(startdate))";
+        var enddate = "@Html.Raw(HttpUtility.JavaScriptStringEncode(enddate))";
+            //alert($("#datepicker-1").val());
+            //alert($("#datepicker-2").val());
+            //alert("Result1");
+            var feedbackresults = "@Html.Raw(HttpUtility.JavaScriptStringEncode(feedbackresults))";
+            var matrix = new Array([]);
+            $.ajax({
+                url: feedbackresults + d + "&d1=" +d1+"&zone="+zone,
+                crossOrgin: true, // use jsonp for cross origin request
+
+                dataType: 'json',
+                type: 'GET',
+                async:false,
+                success: function (matrix) {
+                  //  alert(matrix);
+
+                    for (var i = 0; i < matrix.length; i++)
+                    {
+                        var tempsize = matrix[i];
+                        for(var j=0;j<tempsize.length;j++)
+                        {
+
+                            if(matrix[j]=="0")
+                            {
+                                flag = 0;
+                            }
+                            else
+                            {
+                                //alert('break');
+                                flag = 1;
+                                break;
+                            }
+                        }
+                    }
+                    var noofcolumns = matrix[0].length;
+                    //alert(noofcolumns);
+                    var totalhappy = 0, totalsatisfied = 0, totalunhappy = 0;
+                    for (var i = 1; i < noofcolumns + 1; i++) {
+                        totalhappy += matrix[0][i - 1];
+                    }
+                    for (var i = 1; i < noofcolumns + 1; i++) {
+                        totalsatisfied += matrix[1][i - 1];
+                    }
+                    for (var i = 1; i < noofcolumns + 1; i++) {
+                        totalunhappy += matrix[2][i - 1];
+                    }
+                  //  alert('asf');
+                    //alert(flag);
+                    if (flag != 0) {
+
+                        if (totalhappy >= 0 && totalsatisfied >= 0 && totalunhappy >= 0) {
+
+                            if (cnt > 0) {
+
+                                count++;
+                                //alert(count);
+                                $('#dropdownlistofpatterns').removeClass("hidden");
+                                document.getElementById("dropdownlistofpatterns").innerHTML += "<option id=chartpatternfeedsData onClick=defaultPieFromFeeds() selected>" + "Questionnaire Set " + count + "</option>";
+                                $('#chartpatternfeedsData').click();
+                                //                        document.getElementById("exporttoexcel").innerHTML += "<input id=exportpatternforfeeds type=\"checkbox\"/>";
+
+                            }
+                            else {
+                                count++;
+                                //alert(count);
+                                $('#dropdownlistofpatterns').removeClass("hidden");
+                                document.getElementById("dropdownlistofpatterns").innerHTML += "<option id=chartpatternfeedsData onClick=defaultPieFromFeeds() selected>" + "Questionnaire Set " + count + "</option>";
+                                // document.getElementById("exporttoexcel").innerHTML += "<input id=exportpatternforfeeds type=\"checkbox\"/>";
+                                $('#chartpatternfeedsData').click();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //alert("No Feedback Available");
+                    }
+                    if(count==0)
+                        alert("No feedback available");
+
+                }
+                , error: function () {
+                    alert("feedback not available")
+                }
+            });
+           // alert(flag);
+            if (flag != 0) {
+
+                setTimeout(function () {
+                    $.ajax({
+                        url: startdate + "0" + "&lookup=Feeds&zone=" + zone + "&d=" + d + "&d1=" + d1,
+                        CrossOrgin: true,
+                        type: 'GET',
+                        async: false,
+                        success: function (result) {
+                            var temp = JSON.stringify(result);
+                            temp = temp.replace("T00:00:00", "");
+                            temp = temp.replace("[\"", "");
+                            temp = temp.replace("\"]", "");
+                            tempstartdateseries = temp;
+                            document.getElementById("chartpatternfeedsData").innerHTML += " From : " + temp;
+
+                        }
+                    });
+
+                    $.ajax({
+                        url: enddate + "0" + "&lookup=Feeds&zone=" + zone + "&d=" + d + "&d1=" + d1,
+                        CrossOrgin: true,
+                        type: 'GET',
+                        async: false,
+                        success: function (result) {
+                            //  alert(result);
+                            var temp = JSON.stringify(result);
+                            temp = temp.replace("T00:00:00", "");
+                            temp = temp.replace("[\"", "");
+                            temp = temp.replace("\"]", "");
+                            tempenddateseries = temp;
+                            document.getElementById("chartpatternfeedsData").innerHTML += " To : " + temp;
+                        }
+                    });
+                }, 1000);
+            }
+        }
+
+
+        function defaultPieFromFeeds() {
+            var feedbackresults = "@Html.Raw(HttpUtility.JavaScriptStringEncode(resultmatrix))";
+            stackedBarChartFromFeeds();
+
+            $.ajax({
+                url: feedbackresults + $('#datepicker-1').val() + "&d1=" + $('#datepicker-2').val() + "&zone=" + zone,
+                crossOrgin: true, // use jsonp for cross origin request
+
+                dataType: 'json',
+                type: 'GET',
+                success: function (matrix) {
+
+                    var noofcolumns = matrix[0].length;
+                    var totalhappy = 0, totalsatisfied = 0, totalunhappy = 0;
+                    for (var i = 1; i < noofcolumns + 1; i++) {
+                        totalhappy += matrix[0][i - 1];
+                    }
+                    for (var i = 1; i < noofcolumns + 1; i++) {
+                        totalsatisfied += matrix[1][i - 1];
+                    }
+                    for (var i = 1; i < noofcolumns + 1; i++) {
+                        totalunhappy += matrix[2][i - 1];
+                    }
+
+                    // alert(totalhappy);
+                    $('#container').highcharts({
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: 0,//null,
+                            plotShadow: false
+                        },
+                        colors: ['#558000', '#ffcc00', '#ff3333'],
+
+                        title: {
+                            text: 'FeedBack Results'
+                        },
+                        tooltip: {
+                            pointFormat: '<b>{point.name}: <b>{point.y}</b>'
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                point: {
+                                    events: {
+                                        click: function (event) {
+                                            // alert('' + this.options.name + ' ' + this.options.y);
+                                            drawCategoryChartBackup(this.options.name, temp);
+                                        }
+                                    }
+                                },
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.y} </b>',
+                                    style: {
+                                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                    }
+                                }
+
+                            }
+                        },
+                        series: [{
+                            type: 'pie',
+                            name: 'Ser',
+                            data: [{
+                                name: 'Happy',
+                                y: totalhappy,
+
+
+                            }, {
+                                name: 'Satisfied',
+                                y: totalsatisfied,
+
+                            }, {
+                                name: 'Unhappy',
+                                y: totalunhappy,
+                            }
+
+                            ]
+                        }]
+                    });
+                }
+                      , error: function () {
+
+                      }
+            });
+        }
+
+
+        //New Implementation(Bar)
+        function stackedBarChartFromFeeds() {
+            var resultmatrixfromfeedconfig = "@Html.Raw(HttpUtility.JavaScriptStringEncode(resultmatrix))";
+            $.ajax({
+                url: resultmatrixfromfeedconfig + $('#datepicker-1').val() + "&d1=" + $('#datepicker-2').val() + "&zone=" + zone,
+                crossOrgin: true, // use jsonp for cross origin request
+
+                dataType: 'json',
+                type: 'GET',
+                async: false,
+                success: function (data) {
+
+                    for (var i = 0; i < data.length; i++)
+                        plserieshappy[i] = data[0][i];
+                    for (var i = 0; i < data.length; i++)
+                        plseriessatisfied[i] = data[1][i];
+                    for (var i = 0; i < data.length; i++)
+                        plseriesunhappy[i] = data[2][i];
+                    drawStackedBarChart();
+                }, error: function () {
+
+                }
+            });
+        }
+
+
+        function drawChartWithPattern(id)
+        {
+
+            document.getElementById("container_subcat").innerHTML = "";
+           // var d = $("#datepicker-1").val();
+            // alert($("#datepicker-2").val());
+            //var d1 = $("#datepicker-2").val();
+            var feedbackresultsmodified = "@Html.Raw(HttpUtility.JavaScriptStringEncode(feedbackresultsmodified))";
+            var temp = id.replace("chartpattern", "");
+            if (temp != "feedsData") {
+                if (zone != '') {
+                    //alert("from feedback backup");
+                    $.ajax({
+                        url: feedbackresultsmodified + d + "&d1=" + d1 + "&zone=" + zone + "&pattern=" + temp,
+                        crossOrgin: true, // use jsonp for cross origin request
+
+                        dataType: 'json',
+                        type: 'GET',
+                        success: function (matrix) {
+
+                            var noofcolumns = matrix[0].length;
+                            var totalhappy = 0, totalsatisfied = 0, totalunhappy = 0;
+                            for (var i = 1; i < noofcolumns + 1; i++) {
+                                totalhappy += matrix[0][i - 1];
+                            }
+                            for (var i = 1; i < noofcolumns + 1; i++) {
+                                totalsatisfied += matrix[1][i - 1];
+                            }
+                            for (var i = 1; i < noofcolumns + 1; i++) {
+                                totalunhappy += matrix[2][i - 1];
+                            }
+
+                            // alert(totalhappy);
+                            $('#container').highcharts({
+                                chart: {
+                                    plotBackgroundColor: null,
+                                    plotBorderWidth: 0,//null,
+                                    plotShadow: false
+                                },
+                                colors: ['#558000', '#ffcc00', '#ff3333'],
+
+                                title: {
+                                    text: 'FeedBack Results for ' + $('#' + id).text()
+                                },
+                                tooltip: {
+                                    pointFormat: '<b>{point.name}: <b>{point.y}</b>'
+                                },
+                                plotOptions: {
+                                    pie: {
+                                        allowPointSelect: true,
+                                        cursor: 'pointer',
+                                        point: {
+                                            events: {
+                                                click: function (event) {
+                                                    // alert('' + this.options.name + ' ' + this.options.y);
+                                                    drawCategoryChartBackup(this.options.name, temp);
+                                                }
+                                            }
+                                        },
+                                        dataLabels: {
+                                            enabled: true,
+                                            format: '<b>{point.name}</b>: {point.y} </b>',
+                                            style: {
+                                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                            }
+                                        }
+
+                                    }
+                                },
+                                series: [{
+                                    type: 'pie',
+                                    name: 'Ser',
+                                    data: [{
+                                        name: 'Happy',
+                                        y: totalhappy,
+
+
+                                    }, {
+                                        name: 'Satisfied',
+                                        y: totalsatisfied,
+
+                                    }, {
+                                        name: 'Unhappy',
+                                        y: totalunhappy,
+                                    }
+
+                                    ]
+                                }]
+                            });
+                        }
+                        , error: function () {
+
+                        }
+                    });
+
+                }
+            }
+            else {
+                //alert("from feedback");
+                drawPieFromFeedsData();
+            }
+        }
+        function windowsPathValidation(contwinpath) {
+            if ((contwinpath.charAt(0) != "\\" || contwinpath.charAt(1) != "\\") || (contwinpath.charAt(0) != "/" || contwinpath.charAt(1) != "/")) {
+                if (!contwinpath.charAt(0).match(/^[a-zA-Z]/)) {
+                    return false;
+                }
+                if (!contwinpath.charAt(1).match(/^[:]/) || !contwinpath.charAt(2).match(/^[\/\\]/)) {
+                    return false;
+                }
+
+            }
+        }
+        function checkForPatternsToExport() {
+
+            var loc;
+            var flag = 0;
+                loc = "@Html.Raw(HttpUtility.JavaScriptStringEncode(path))";
+
+           /* if (document.getElementById("customPath").checked && document.getElementById("customPathText").value!="") {
+                loc = document.getElementById("customPathText").value;
+                if(loc=="" || !windowsPathValidation(loc))
+                {
+                    alert("please enter valid path");
+                    flag=1;
+                }*/
+
+
+
+
+                var e = document.getElementById("dropdownlistofpatterns");
+                //alert(e);
+                var strUser = e.options[e.selectedIndex].id;
+                var index = e.options[e.selectedIndex].value;
+                //alert(strUser);
+                var exportpatterntoexcel = "@Html.Raw(HttpUtility.JavaScriptStringEncode(exportpatterntoexcel))";
+                var temp = "";
+                var tempid = strUser.replace("chartpattern", "");
+                //alert(tempid);
+                if (tempid != "feedsData") {
+                    $.ajax({
+                        url: exportpatterntoexcel + startdateseries[index - 1] + "&enddate=" + enddateseries[index - 1] + "&rangestart=" + d + "&rangeend=" + d1 + "&zone=" + zone + "&pattern_number=" + patternstoexport[index - 1] + "&lookup=Feeds_Backup" + "&location=" + loc,
+                        crossOrgin: true, // use jsonp for cross origin request
+                        dataType: 'json',
+                        type: 'GET',
+                        async: false,
+                        success: function (data) {
+                            if (data == "success")
+                                alert("Feedback Report Generated For Date From : " + startdateseries[index - 1] + " To : " + enddateseries[index - 1] + " successfully");
+                            else
+                                alert("Export failed make sure MS Excel is installed and given path is correct");
+                        },
+                        error: function (data) {
+                            alert("Please make sure Ms Excel is installed in your system");
+                        }
+
+                    });
+                }
+                else {
+                    //var lastindex = startdateseries.length;
+                    //  alert(lastindex);
+                    $.ajax({
+                        url: exportpatterntoexcel + tempstartdateseries + "&enddate=" + tempenddateseries + "&rangestart=" + d + "&rangeend=" + d1 + "&zone=" + zone + "&pattern_number=" + patternstoexport[index - 1] + "&lookup=Feeds",
+                        crossOrgin: true, // use jsonp for cross origin request
+                        dataType: 'json',
+                        type: 'GET',
+                        async: false,
+                        success: function (data) {
+                            //alert(data);
+                            alert("Feedback Report Generated For Date From : " + tempstartdateseries + " To : " + tempenddateseries + " successfully");
+                        },
+                        error: function (data) {
+                            alert("Please make sure Ms Excel is installed in your system");
+                        }
+
+                    });
+                }
+           }
+                //startdateseries[index-1]);
+                // alert(enddateseries[index-1]);
+                /*for (var i = 1; i < size + 1; i++) {
+                    if ($("#exportpattern" + patternstoexport[i - 1]).prop('checked') == true) {
+                        temp = temp + patternstoexport[i - 1];
+                       // alert(startdateseries[i - 1]);
+                        //alert(enddateseries[i - 1]);
+
+                    }
+
+
+                }
+                if ($("#exportpatternforfeeds").prop('checked') == true) {
+                    var ind = startdateseries.length - 1;
+                    $.ajax({
+                        url: exportpatterntoexcel + startdateseries[ind] + "&enddate=" + enddateseries[ind] + "&rangestart=" + d + "&rangeend=" + d1 + "&zone=" + zone + "&pattern_number=" + patternstoexport[ind] + "&lookup=Feeds",
+                        crossOrgin: true, // use jsonp for cross origin request
+                        dataType: 'json',
+                        type: 'GET',
+                        async: false,
+                        success: function (data) {
+                            alert(data);
+                        },
+                        error: function (data) {
+
+                        }
+
+                    });
+
+
+                }*/
+
+
+        function drawPieFromFeedsData()
+        {
+            var feedbackresults = "@Html.Raw(HttpUtility.JavaScriptStringEncode(feedbackresults))";
+            var matrix = new Array([]);
+            $.ajax({
+                url: feedbackresults + "?d=" + d + "&d1=" + d1 + "&zone=" + zone,
+                crossOrgin: true, // use jsonp for cross origin request
+
+                dataType: 'json',
+                type: 'GET',
+                success: function (matrix) {
+                    //alert(matrix);
+                    var noofcolumns = matrix[0].length;
+                    var totalhappy = 0, totalsatisfied = 0, totalunhappy = 0;
+                    for (var i = 1; i < noofcolumns + 1; i++) {
+                        totalhappy += matrix[0][i - 1];
+                    }
+                    for (var i = 1; i < noofcolumns + 1; i++) {
+                        totalsatisfied += matrix[1][i - 1];
+                    }
+                    for (var i = 1; i < noofcolumns + 1; i++) {
+                        totalunhappy += matrix[2][i - 1];
+                    }
+
+                    // alert(totalhappy);
+                    $('#container').highcharts({
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: 0,//null,
+                            plotShadow: false
+                        },
+                        colors: ['#558000', '#ffcc00', '#ff3333'],
+
+                        title: {
+                        text: 'FeedBack Results for '+$('#chartpatternfeedsData').text()
+                        },
+                        tooltip: {
+                            pointFormat: '<b>{point.name}: <b>{point.y}</b>'
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                point: {
+                                    events: {
+                                        click: function (event) {
+                                            // alert('' + this.options.name + ' ' + this.options.y);
+                                            draw_cat_chart(this.options.name);
+                                        }
+                                    }
+                                },
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.y} </b>',
+                                    style: {
+                                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                    }
+                                }
+
+                            }
+                        },
+                        series: [{
+                            type: 'pie',
+                            name: 'Ser',
+                            data: [{
+                                name: 'Happy',
+                                y: totalhappy,
+
+
+                            }, {
+                                name: 'Satisfied',
+                                y: totalsatisfied,
+
+                            }, {
+                                name: 'Unhappy',
+                                y: totalunhappy,
+                            }
+
+                            ]
+                        }]
+                    });
+
+                }
+                , error: function () {
+
+                }
+            });
+
+
+        }
+        function draw_cat_chart(catagory)
+        {
+            var cats=[];
+            var url = "@Html.Raw(HttpUtility.JavaScriptStringEncode(url))";
+            var feedbackresults="@Html.Raw(HttpUtility.JavaScriptStringEncode(feedbackresults))";
+            var qn=[];
+            var titleofquestions = [];
+            var size;
+            var plseries=[];
+            $.ajax({
+                url: url,
+                crossOrgin: true, // use jsonp for cross origin request
+                dataType: 'json',
+                type: 'GET',
+                success: function (data) {
+
+
+                    size = data.length;
+                    for(var i=1;i<size+1;i++)
+                    {
+                        qn[i-1]=data[i-1].Question;
+                        questions[i-1]=data[i-1].Question;
+                        console.log(qn[i-1]);
+                    }
+                    $.ajax({
+                        url: feedbackresults + "?d="+ d + "&d1=" + d1 + "&zone=" + zone,
+                        crossOrgin: true, // use jsonp for cross origin request
+                        dataType: 'json',
+                        type: 'GET',
+                        success: function (matrix) {
+                            if(catagory == 'Happy') {
+                                for(var i=1;i<size+1;i++)
+                                {
+                                    cats[i-1]=qn[i-1];
+                                }
+                                //cats = [qn[0],qn[1],qn[2],qn[3],qn[4],"jhjh"];
+                                for(var i=1;i<size+1;i++)
+                                plseries[i-1]=matrix[0][i-1];
+
+                                //var acseries = [30, 60, 80, 35, 70];
+                            }
+                            if(catagory == 'Satisfied') {
+                                // cats = ['cat1','cat2'];
+                                for(var i=1;i<size+1;i++)
+                                {
+                                    cats[i-1]=qn[i-1];
+                                }
+                                for(var i=1;i<size+1;i++)
+                                    plseries[i-1]=matrix[1][i-1];
+
+                                // var acseries = [30, 60, 80, 35, 70];
+                            }
+                            if(catagory == 'Unhappy') {
+                                for(var i=1;i<size+1;i++)
+                                {
+                                    cats[i-1]=qn[i-1];
+                                }
+                                for(var i=1;i<size+1;i++)
+                                    plseries[i-1]=matrix[2][i-1];
+                                // var acseries = [30, 60, 80, 35, 70];
+                            }
+
+
+                        }, error: function (err) {
+                            alert("cannot be displayed");
+                            // sQ.html("<br>"+pin+"<br>"+name);
+                            // sQ.html(text);
+                            console.log("error");
+                        }
+                    });
+
+
+
+                }, error: function (err) {
+                    alert("cannot be displayed");
+                    // sQ.html("<br>"+pin+"<br>"+name);
+                    // sQ.html(text);
+                    console.log("error");
+                }
+            });
+
+
+
+
+
+            alert("Please view the statistics");
+
+
+
+
+            var c1;
+
+            if(catagory=='Happy')
+            {
+                c1='#558000';
+            }
+            else if(catagory=='Satisfied')
+            {
+                c1='#ffcc00';
+            }
+            else
+            {
+                c1='#ff3333';
+            }
+            //exit;
+            $('#container_subcat').highcharts({
+                chart: {
+                    type: 'column',
+                },
+
+                colors:[
+                        c1],
+                title: {
+                    text: ''+catagory+' Status'
+                },
+                xAxis: {
+                    categories: cats
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '',
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:8px">{point.key}</span><table>',
+                    pointFormat: '<tr style="border:none;"><td style="color:{series.color};padding:0;border:none;">{series.name}: </td>' +
+                        '<td style="padding:0;border:none;"><b>{point.y:1f} </b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: false,
+                    useHTML: true
+                },
+                plotOptions: {
+                    series:{
+                        cursor:'pointer',
+                        point:{
+                            events:{
+                                click:function(){
+                                    //alert(this.category);
+                                    //alert(this.index);
+                                    displaymrid(this.index, catagory, d, d1,zone);
+                                }
+                            }
+                        }
+                    },
+                    column: {
+                        pointPadding: 0,
+                        borderWidth: 0
+                    },
+                },
+                series: [{
+                    name: "Total",
+                    data: plseries
+
+                }]
+            });
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function drawCategoryChartBackup(catagory, flag) {
+
+          //  var d = $("#datepicker-1").val();
+            // alert($("#datepicker-2").val());
+           // var d1 = $("#datepicker-2").val();
+            var cats = [];
+            var getallquestionsfrombackup = "@Html.Raw(HttpUtility.JavaScriptStringEncode(getallquestionsfrombackup))";
+            var feedbackresultsmodified = "@Html.Raw(HttpUtility.JavaScriptStringEncode(feedbackresultsmodified))";
+            var qn = [];
+            var titleofquestions = [];
+            var size;
+            var plseries = [];
+            $.ajax({
+                url: getallquestionsfrombackup+flag,
+                crossOrgin: true, // use jsonp for cross origin request
+                dataType: 'json',
+                type: 'GET',
+                success: function (data) {
+                   // alert(data);
+
+
+                    size = data.length;
+                    for (var i = 1; i < size + 1; i++) {
+                        qn[i - 1] = data[i - 1];
+                        questions[i - 1] = data[i - 1];
+                        console.log(qn[i - 1]);
+                    }
+                    $.ajax({
+                        url: feedbackresultsmodified+d + "&d1=" + d1 + "&zone=" + zone + "&pattern=" + flag,
+                        crossOrgin: true, // use jsonp for cross origin request
+                        dataType: 'json',
+                        type: 'GET',
+                        success: function (matrix) {
+                            if (catagory == 'Happy') {
+                                for (var i = 1; i < size + 1; i++) {
+                                    cats[i - 1] = qn[i - 1];
+                                }
+                                //cats = [qn[0],qn[1],qn[2],qn[3],qn[4],"jhjh"];
+                                for (var i = 1; i < size + 1; i++)
+                                    plseries[i - 1] = matrix[0][i - 1];
+
+                                //var acseries = [30, 60, 80, 35, 70];
+                            }
+                            if (catagory == 'Satisfied') {
+                                // cats = ['cat1','cat2'];
+                                for (var i = 1; i < size + 1; i++) {
+                                    cats[i - 1] = qn[i - 1];
+                                }
+                                for (var i = 1; i < size + 1; i++)
+                                    plseries[i - 1] = matrix[1][i - 1];
+
+                                // var acseries = [30, 60, 80, 35, 70];
+                            }
+                            if (catagory == 'Unhappy') {
+                                for (var i = 1; i < size + 1; i++) {
+                                    cats[i - 1] = qn[i - 1];
+                                }
+                                for (var i = 1; i < size + 1; i++)
+                                    plseries[i - 1] = matrix[2][i - 1];
+                                // var acseries = [30, 60, 80, 35, 70];
+                            }
+
+
+                        }, error: function (err) {
+                            alert("cannot be displayed");
+                            // sQ.html("<br>"+pin+"<br>"+name);
+                            // sQ.html(text);
+                            console.log("error");
+                        }
+                    });
+
+
+
+                }, error: function (err) {
+                    alert("cannot be displayed");
+                    // sQ.html("<br>"+pin+"<br>"+name);
+                    // sQ.html(text);
+                    console.log("error");
+                }
+            });
+
+
+
+
+
+            alert("Please view the statistics");
+
+
+
+
+            var c1;
+
+            if (catagory == 'Happy') {
+                c1 = '#558000';
+            }
+            else if (catagory == 'Satisfied') {
+                c1 = '#ffcc00';
+            }
+            else {
+                c1 = '#ff3333';
+            }
+            //exit;
+            $('#container_subcat').highcharts({
+                chart: {
+                    type: 'column',
+                },
+
+                colors: [
+                        c1],
+                title: {
+                    text: '' + catagory + ' Status'
+                },
+                xAxis: {
+                    categories: cats
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '',
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:8px">{point.key}</span><table>',
+                    pointFormat: '<tr style="border:none;"><td style="color:{series.color};padding:0;border:none;">{series.name}: </td>' +
+                        '<td style="padding:0;border:none;"><b>{point.y:1f} </b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: false,
+                    useHTML: true
+                },
+                plotOptions: {
+                    series: {
+                        cursor: 'pointer',
+                        point: {
+                            events: {
+                                click: function () {
+                                    //alert(this.category);
+                                    //alert(this.index);
+                                    displaymridforbackup(this.index, catagory,flag,zone,d,d1);
+                                }
+                            }
+                        }
+                    },
+                    column: {
+                        pointPadding: 0,
+                        borderWidth: 0
+                    },
+                },
+                series: [{
+                    name: "Total",
+                    data: plseries
+
+                }]
+            });
+        }
+
+
+
+        function displaymrid(category,catagory,d,d1,zone)
+        {
+            var details=[];
+            var listofmrnoandnames = "@Html.Raw(HttpUtility.JavaScriptStringEncode(listofmrnoandnames))";
+            $.ajax({
+                url: listofmrnoandnames+category+"&status="+catagory+"&d="+d+"&d1="+d1+"&zone="+zone,
+                crossOrgin: true, // use jsonp for cross origin request
+                dataType: 'json',
+                type: 'GET',
+                success: function (data) {
+                    console.log(data);
+                    document.getElementById('mrnoandname').innerHTML = "<table id=\"d0\" class=\"table col-sm-12\"><tr><th><center>LOCATION</center></th> <th><center>DATE</center></th><th><center>MRNO<center></th><th><center>NAME</center></th> </tr>";
+                    for(var i=0;i<data.length;i++)
+                    {
+                        details = data[i].split("$");
+                        document.getElementById("d0").innerHTML += "<tr><td><center>" + details[0] + "</center></td><td><center>" + details[1] + "</center></td><td><center>" + details[2] + "</center></td><td><center>" + details[3] + "</center></td></tr>";
+                       // alert(details[0] + " " + details[1]);
+                    }
+                },
+                error: function ()
+                {
+
+                }
+            });
+
+
+            $('#myModal').modal();
+
+            $('#myModalLabel').text("MRNO of patients who gave "+catagory+" for "+questions[category]);
+           //document.getElementById('myModalLabel').innerHTML="asf";
+        }
+        function displaymridforbackup(category, catagory, flag, zone, d, d1) {
+
+            var details = [];
+            var listofmrnoandnamesforbackup = "@Html.Raw(HttpUtility.JavaScriptStringEncode(listofmrnoandnamesforbackup))";
+            $.ajax({
+                url: listofmrnoandnamesforbackup + category + "&status=" + catagory+"&flag="+flag+"&zone="+zone+"&d="+d+"&d1="+d1,
+                crossOrgin: true, // use jsonp for cross origin request
+                dataType: 'json',
+                type: 'GET',
+                success: function (data) {
+                    console.log(data);
+                    document.getElementById('mrnoandname').innerHTML = "<table id=\"d0\" class=\"table col-sm-12\"><tr><th><center>LOCATION</center></th> <th><center>DATE</center></th><th><center>MRNO</center></th> <th><center>NAME</center></th></tr>";
+                    for (var i = 0; i < data.length; i++) {
+                        details = data[i].split("$");
+                        document.getElementById("d0").innerHTML += "<tr><td><center>" + details[0] + "</center></td><td><center>" + details[1] + "</center></td><td><center>" + details[2] + "</center></td><td><center>" + details[3] + "</center></td></tr>";
+                        // alert(details[0] + " " + details[1]);
+                    }
+                },
+                error: function () {
+
+                }
+            });
+
+
+            $('#myModal').modal();
+
+            $('#myModalLabel').text("MRNO of patients who gave " + catagory + " for " + questions[category]);
+            //document.getElementById('myModalLabel').innerHTML="asf";
+        }
+
+        function back()
+        {
+            window.history.back();
+        }
+        function selectAllCheckBox()
+        {
+            for (var i = 1; i < size + 1; i++) {
+                $("#exportpattern" + patternstoexport[i - 1]).prop('checked',true);
+
+            }
+            $("#exportpatternforfeeds").prop('checked',true);
+        }
+        function exportFn()
+        {
+            $('#myModalFilePath').modal();
+            $('#customPath').prop("checked", false);
+            $('#defaultPath').prop("checked", false);
+            $('#customPathText').val('');
+            $('#customPathText').hide();
+        }
+
+
+    </script>
+
+
+    <style>
+        .white_content {
+            display: none;
+        }
+
+        .hand {
+            cursor: pointer;
+            cursor: hand;
+        }
+
+        .my1 {
+            width: auto;
+            display: inline-block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container" style="border:solid black 0px">
+
+        <div class="row">
+            <div class="col-sm-3">
+                <i class="fa fa-arrow-circle-left hand" style="font-size:50px" aria-hidden="true" onclick="back();"></i>
+
+            </div>
+            <div class="col-sm-6">
+                <center><h2>Feedback Results</h2></center>
+            </div>
+        </div>
+        <div class="row">
+            <center>
+                <div class="col-sm-2 ">
+                    Start date:
+                    <input type="text" id="datepicker-1" class="col-sm-2 form-control">
+                </div>
+                <div class="col-sm-2 ">
+                    End date
+
+                    <input class="col-sm-2 form-control" type="text" id="datepicker-2">
+                </div>
+                <div class="col-sm-3  my1">
+                    <select class="form-control  " style="margin-top:19px" id="zones" name="Select location" value="select location">
+
+
+                        <option value="ALL" selected>ALL</option>
+
+                    </select>
+                </div>
+
+                <div class="col-sm-5" style="margin-top:19px">
+                    <select class="form-control hidden" id="dropdownlistofpatterns">
+                        <option value="" selected>Please select one to view the results</option>
+                    </select>
+                </div>
+            </center>
+        </div>
+        <div class="row">
+            <br />
+
+            <div class="col-sm-12 col-sm-push-3">
+                <div id="availablepatterns" class="col-sm-6">
+
+                </div>
+                <div id="exporttoexcel" class="col-sm-2">
+
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+
+            <div class="col-sm-12">
+                <center>
+                    <button id="ok" type="button" class="btn btn-primary " name="command" value="getresults" onclick="getResults()">Get Results</button>
+                    <button id="reset" type="button" class="btn btn-primary " onclick="resetFn()">Reset</button>
+                    <button id="export" type="button" class="btn btn-primary" onclick="exportFn();">Export To Excel</button>
+                    <!-- <button id="selectall" type="button" class="btn btn-primary" onclick="selectAllCheckBox()">Select All</button>-->
+                </center>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="container"></div>
+            </div>
+
+            <div class="col-sm-6">
+                <div id="container-bar"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="container_subcat"></div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">MRNO</h4>
+                </div>
+                <div class="modal-body" id="mrnoandname">
+                    <div class="row">
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModalFilePath" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Please specify path for the excel file to be exported</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form role="form">
+
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label><input type="radio" value="defaultPath" name="path" id="defaultPath">Use default path "@Html.Raw(HttpUtility.JavaScriptStringEncode(path))"</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" value="customPath" name="path" id="customPath">Change path</label>
+                                </div>
+                                <input type="text" class="form-control" id="customPathText" placeholder="Enter path For Example: C:\folderName\" autocomplete="off">
+                            </div>
+
+                            <button type="submit" class="btn btn-success btn-block" id="pathSubmit" onclick="checkForPatternsToExport();" data-dismiss="modal">OK</button>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model3" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityType Name="Country_Master">
+    <Key>
+      <PropertyRef Name="COUNTRY_CODE" />
+    </Key>
+    <Property Name="COUNTRY_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="COUNTRY_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TOTAL_MALE_POPULATION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TOTAL_FEMALE_POPULATION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TOTAL_MALE_EYE_DEFECT_POPULATION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TOTAL_FEMALE_EYE_DEFECT_POPULATION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="country_grp" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="Entities6" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Country_Master" EntityType="Self.Country_Master" />
+  </EntityContainer>
+</Schema>

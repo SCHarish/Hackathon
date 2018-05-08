@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'C:\USERS\H155724\DESKTOP\SERVERAPP\APP_DATA\PATIENTDB.MDF.dbo.District_Master' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="District_Master">
+          <Property Name="DISTRICT_CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="DISTRICT_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="STATE_CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="TOTAL_MALE_POPULATION" Type="float" />
+          <Property Name="TOTAL_FEMALE_POPULATION" Type="float" />
+          <Property Name="PERCENTAGE_OF_TOTAL_MALE_EYE_DEFECT_POPULATION" Type="float" />
+          <Property Name="PERCENTAGE_OF_TOTAL_FEMALE_EYE_DEFECT_POPULATION" Type="float" />
+          <Property Name="GIS_CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="district_grp" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <EntityContainer Name="Model1StoreContainer" />
+</Schema>

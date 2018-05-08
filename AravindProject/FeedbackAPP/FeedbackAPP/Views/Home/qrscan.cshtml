@@ -1,0 +1,447 @@
+﻿@model FeedbackAPP.Models.User
+
+@{
+    Layout = null;
+    var status = ViewBag.status;
+}
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/font-awesome.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+    <script type="text/javascript" src="~/scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/scripts/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/scripts/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/scripts/jquery-1.11.1.js"></script>
+    <link rel="stylesheet" href='~/Content/jquery-ui.css' />
+    <style type="text/css">
+        body {
+            background: #efefef url(gray_jean.png);
+        }
+
+        #ui-preview {
+            border: 5px solid #ddd;
+            margin: 30px;
+            background: #fff;
+            padding: 0 0 20px;
+        }
+
+            #ui-preview h1 {
+                background: #000;
+                font-size: 23px;
+                color: #fff;
+                padding: 10px 0 10px 20px;
+                margin: 0 0 20px;
+            }
+
+        legend {
+            width: auto;
+            border-bottom: none;
+            padding: 0 10px;
+            margin-bottom: 0;
+        }
+
+        fieldset {
+            padding: 0.35em 0.625em 0.75em !important;
+            margin: 0 2px 10px !important;
+            border: 1px solid #c0c0c0 !important;
+        }
+
+        .form-group {
+            margin: 0 10px;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: black;
+            font-family: monospace;
+            font-size: 15px;
+        }
+
+        .form-group select {
+            margin: 0 0 10px;
+        }
+
+        .btn-green {
+            text-shadow: 0 -1px 0 #669E00;
+            color: #fff;
+            border: 1px solid #669E00;
+            background: rgb(143,196,0); /* Old browsers */
+            background: -moz-linear-gradient(top, rgba(143,196,0,1) 0%, rgba(107,165,0,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(143,196,0,1)), color-stop(100%,rgba(107,165,0,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, rgba(143,196,0,1) 0%,rgba(107,165,0,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, rgba(143,196,0,1) 0%,rgba(107,165,0,1) 100%); /* Opera 11.10+ */
+            background: linear-gradient(top, rgba(143,196,0,1) 0%,rgba(107,165,0,1) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8fc400', endColorstr='#6ba500',GradientType=0 ); /* IE6-9 */
+        }
+
+            .btn-green:hover {
+                text-shadow: 0 1px 0 #669E00;
+                border: 1px solid #669E00;
+                background: rgb(198,226,120); /* Old browsers */
+                background: -moz-linear-gradient(top, rgba(198,226,120,1) 0%, rgba(167,211,44,1) 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(198,226,120,1)), color-stop(100%,rgba(167,211,44,1))); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(top, rgba(198,226,120,1) 0%,rgba(167,211,44,1) 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(top, rgba(198,226,120,1) 0%,rgba(167,211,44,1) 100%); /* Opera 11.10+ */
+                background: linear-gradient(top, rgba(198,226,120,1) 0%,rgba(167,211,44,1) 100%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c6e278', endColorstr='#a7d32c',GradientType=0 ); /* IE6-9 */
+            }
+
+        .btn-orange {
+            text-shadow: 0 -1px 0 #FC730A;
+            color: #fff;
+            border: 1px solid #FC730A;
+            background: rgb(255,168,76); /* Old browsers */
+            background: -moz-linear-gradient(top, rgba(255,168,76,1) 0%, rgba(255,123,13,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,168,76,1)), color-stop(100%,rgba(255,123,13,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, rgba(255,168,76,1) 0%,rgba(255,123,13,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, rgba(255,168,76,1) 0%,rgba(255,123,13,1) 100%); /* Opera 11.10+ */
+            background: linear-gradient(top, rgba(255,168,76,1) 0%,rgba(255,123,13,1) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa84c', endColorstr='#ff7b0d',GradientType=0 ); /* IE6-9 */
+        }
+
+            .btn-orange:hover {
+                text-shadow: 0 1px 0 #FC730A;
+                border: 1px solid #FC730A;
+                background: rgb(249,191,74); /* Old browsers */
+                background: -moz-linear-gradient(top, rgba(249,191,74,1) 0%, rgba(249,181,9,1) 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(249,191,74,1)), color-stop(100%,rgba(249,181,9,1))); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(top, rgba(249,191,74,1) 0%,rgba(249,181,9,1) 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(top, rgba(249,191,74,1) 0%,rgba(249,181,9,1) 100%); /* Opera 11.10+ */
+                background: linear-gradient(top, rgba(249,191,74,1) 0%,rgba(249,181,9,1) 100%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9bf4a', endColorstr='#f9b509',GradientType=0 ); /* IE6-9 */
+            }
+
+        .btn-blue {
+            text-shadow: 0 -1px 0 #1D6DC1;
+            color: #fff;
+            border: 1px solid #1D6DC1;
+            background: rgb(122,188,255); /* Old browsers */
+            background: -moz-linear-gradient(top, rgba(122,188,255,1) 0%, rgba(96,171,248,1) 44%, rgba(64,150,238,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(122,188,255,1)), color-stop(44%,rgba(96,171,248,1)), color-stop(100%,rgba(64,150,238,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%); /* Opera11.10+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 ); /* IE6-9 */
+            background: linear-gradient(top, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%); /* W3C */
+        }
+
+            .btn-blue:hover {
+                text-shadow: 0 1px 0 #1D6DC1;
+                border: 1px solid #1D6DC1;
+                background: rgb(155,205,255); /* Old browsers */
+                background: -moz-linear-gradient(top, rgba(155,205,255,1) 0%, rgba(134,192,250,1) 44%, rgba(110,176,242,1) 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(155,205,255,1)), color-stop(44%,rgba(134,192,250,1)), color-stop(100%,rgba(110,176,242,1))); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(top, rgba(155,205,255,1) 0%,rgba(134,192,250,1) 44%,rgba(110,176,242,1) 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(top, rgba(155,205,255,1) 0%,rgba(134,192,250,1) 44%,rgba(110,176,242,1) 100%); /* Opera 11.10+ */
+                background: linear-gradient(top, rgba(155,205,255,1) 0%,rgba(134,192,250,1) 44%,rgba(110,176,242,1) 100%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9bcdff', endColorstr='#6eb0f2',GradientType=0 ); /* IE6-9 */
+            }
+
+        .inp-data input[type="text"] {
+            display: inline-block;
+            vertical-align: middle;
+            width: 90%;
+            zoom: 1;
+            margin: 0;
+            border: 1px solid #ccc;
+            font-size: 1em;
+            padding: 5px 0;
+            text-indent: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            background: #fff;
+            -moz-box-shadow: inset 0 0 6px #ccc;
+            -webkit-box-shadow: inset 0 1px 6px #ccc;
+            /* box-shadow: inset 0 1px 6px #ccc; */
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .inp-data {
+            margin: 0 0 15px;
+        }
+
+        .signout, .login {
+            background: url(logout-icon.png) no-repeat;
+            height: 24px;
+            float: right;
+            position: absolute;
+            top: 45px;
+            right: 52px;
+            color: #fff;
+            /* display: inherit; */
+            font-size: 20px;
+            padding: 0 0 0 28px;
+        }
+
+            .signout a, .login a {
+                color: #fff;
+            }
+
+                .signout a:hover, .login a:hover {
+                    text-decoration: none;
+                }
+
+        .login {
+            background: url(/Pictures/login.png) no-repeat 6px 6px;
+        }
+
+        .videowrap {
+            width: 552px;
+            height: 100%;
+            border: 1px solid #ccc;
+            height: 300px;
+            float: left;
+            margin: 0 0 10px;
+            background: #eee;
+        }
+    </style>
+    <script>
+        var isvalid = 0;
+        $(document).ready(function () {
+            var a = document.getElementById('t1');
+            var b = document.getElementById('t2');
+            //alert(a);
+            a.onkeyup = function () {
+                if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
+                    b.focus();
+                }
+            }
+            $('#mrnochecking').attr('disabled', true);
+            $('#t1').keyup(function () {
+                if ($(this).val().length == 3) {
+                    isvalid = 1;
+                }
+                else {
+                    isvalid = 0;
+                }
+            });
+            $('#t2').keyup(function () {
+                if ($(this).val().length == 4 && isvalid == 1) {
+                    $('#mrnochecking').attr('disabled', false);
+                }
+                else {
+                    $('#mrnochecking').attr('disabled', true);
+                }
+            });
+            var myVar = localStorage['zone'];
+            if (myVar == null)
+            {
+                myVar = "Not Available";
+            }
+            document.getElementById("zoneinfo").innerHTML = "Current Location : "+ myVar;
+            $('#username').val('');
+            $('#password').val('');
+            if ('@status'== "F")
+            {
+                alert("Invalid username or password");
+            }
+
+        });
+        function f2() {
+            var url = '@Url.Action("Sample", "Home")';
+            window.location.href = url;
+
+        }
+        function back()
+        {
+            window.history.back();
+        }
+        function cancelFn () {
+            $('#username').val('');
+            $('#password').val('');
+
+        }
+
+    </script>
+
+</head>
+<body>
+    <div id="ui-preview">
+        <h1 id="zoneinfo"></h1>
+        <div class="login" data-toggle="modal" data-target="#myModal" onclick="cancelFn();"><a href="#">Login</a></div>
+        <div class="row col-sm-12">
+            <label style="display:block; margin:-10px 0 10px 20px">Note: Show your QR code (or) Enter your Mr.No</label>
+            <div class="col-sm-6">
+                <fieldset>
+                    <legend>QR Code</legend>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label>SHOW YOUR QR CODE HERE</label>
+                            <div class="videowrap">
+                                <center><canvas id="qr-canvas"></canvas></center>
+                            </div>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+            @using (Html.BeginForm("qrscan", "Home", FormMethod.Post, new { }))
+            {
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(model => model.pin, new
+               {
+                   @id = "mrid",
+                   @class = "form-control",
+                   @placeholder = "1000",
+                   @autocomplete = "off",
+                   @maxlength = "9",
+                   @style = "display:none"
+               })
+                </div>
+                <input type="submit" class="btn btn-success myclass9 s1" id="b1" value="SUBMIT" style="display:none" />
+            }
+            <div class="col-sm-6">
+                <fieldset>
+                    <legend>MR.No</legend>
+                    @using (Html.BeginForm("mrnosubmit", "Home", FormMethod.Post, new { }))
+                    {
+                        <div class="col-sm-3 inp-data" style="margin-left:-4px">
+                            @Html.TextBoxFor(m => m.pattern, new
+                       {
+                           @id = "t1",
+
+                           @placeholder = "For Eg.422",
+                           @autocomplete = "off",
+                           @maxlength = "3"
+
+
+                       })
+                        </div>
+                            <!--  <input type="text" id="t1" class="form-control " style="height:60px" placeholder="For Eg.422" maxlength="3" required />-->
+                        <span style="float: left; width: 20px; margin: 4px 0 0;">-</span>
+                        <div class="col-sm-4 inp-data">
+                            @Html.TextBoxFor(m => m.MRID, new
+                       {
+                           @id = "t2",
+
+                           @placeholder = "For Eg.2323",
+                           @autocomplete = "off",
+                           @maxlength = "4"
+
+                       })
+                        </div>
+                        <div class="col-sm-12 inp-data" style="clear:both">
+
+                            <input type="button" class="btn btn-blue" id="b1" value="BACK" onclick="f2()" />
+                            <input type="submit" class="btn btn-success btn-blue" id="mrnochecking" value="SUBMIT" />
+                        </div>
+                    }
+
+                    <!--<form class="form-inline">
+                        <div class="form-group" style="display:block">
+                            <label>ENTER YOUR MR.NO. HERE</label>
+                        </div>
+                        <div class="col-sm-3 inp-data" style="margin-left:-4px">
+                            <input type="text" id="t1">
+                        </div>
+                        <span style="float: left; width: 20px; margin: 4px 0 0;">-</span>
+                        <div class="col-sm-4 inp-data">
+                            <input type="text" id="t2">
+                        </div>
+                        <div class="col-sm-12 inp-data" style="clear:both">
+
+                            <input type="submit" class="btn btn-blue" id="b1" value="BACK" onclick="f2()" />
+                            <input type="submit" class="btn btn-success btn-blue" id="mrnochecking" value="SUBMIT" />
+                        </div>
+                    </form>-->
+                </fieldset>
+                <img src='@Url.Content("~/Pictures/idcard.png")' style="width:592px; height:203px" />
+            </div>
+            <div style="float:right; bottom:0; right: 0; padding:10px;">© 2016 powered by Honeywell</div>
+        </div>
+     <!--   <div style="position:absolute; bottom:0; right: 0; padding:10px;"><img src="~/Pictures/powered.gif" /></div>-->
+        
+    </div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                </div>
+
+
+                <div class="modal-body">
+                    @using (Html.BeginForm("login", "Home", FormMethod.Post, new { }))
+                    {
+                        <div class="form-group">
+                            <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+                            @Html.TextBoxFor(model => model.UserName, new { @id = "username", @class = "form-control", @autocomplete = "off", @maxlength = "30" })
+                            @Html.ValidationMessageFor(model => model.UserName)
+                        </div>
+                        <div class="form-group">
+                            <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                            @Html.TextBoxFor(model => model.Password, new { @id = "password", @class = "form-control", @type = "password", @autocomplete = "off" })
+                            @Html.ValidationMessageFor(model => model.Password)
+                        </div>
+                        <br />
+                        <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="cancelButton" onclick="cancelFn();" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+
+                </div>
+            </div>
+
+        </div>
+        
+
+    </div>
+
+
+
+
+
+
+    <script>
+
+    setTimeout(f1, 60000);
+    function f1()
+    {
+        var url = '@Url.Action("Sample", "Home")';
+        window.location.href = url;
+    }
+        $('#t1').keypress(function (e)
+        {
+            if (e.which != 8 && e.which != 0 && e.which != 43 && e.which != 45 && (e.which < 48 || e.which > 57))
+            {
+                //display error message
+                $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+        });
+        $('#t2').keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && e.which != 43 && e.which != 45 && (e.which < 48 || e.which > 57)) {
+                //display error message
+                $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+        });
+    </script>
+
+
+
+
+
+
+
+</body>
+<script type="text/javascript" src="~/Scripts/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="~/js/qrcodelib.js"></script>
+<script type="text/javascript" src="~/js/WebCodeCam.js"></script>
+<script type="text/javascript" src="~/js/main.js"></script>
+</html>

@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <script type="text/javascript" src="~/scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/scripts/bootstrap.js"></script>
+    <link rel="stylesheet" href='~/Content/bootstrap.css' />
+    <link rel="stylesheet" href="~/Content/font-awesome.css" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Checkpage</title>
+    <script>
+        $(document).ready(function () {
+            var check = localStorage['zone'];
+            if (check == null) {
+                //alert("Please configure your location in admin mode");
+                var url = '@Url.Action("Zone", "Home")';
+                window.location.href = url;
+            }
+            else {
+                var url = '@Url.Action("Sample", "Home")';
+                window.location.href = url;
+            }
+
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <center><h1>FeedBack Application</h1></center>
+    </div>
+</body>
+</html>
+

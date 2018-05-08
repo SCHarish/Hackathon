@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Result";
+}
+<html>
+<head>
+    <link rel="stylesheet" href='~/Content/bootstrap.css'>
+    <link rel="stylesheet" href='~/Content/font-awesome.css'>
+    <link rel="stylesheet" href="~/Content/jquery.js" />
+    <script type="text/javascript" src="~/scripts/jquery-1.10.2.js"></script>
+    <script>
+    function f1()
+    {
+        var url = '@Url.Action("Sample", "Home")';
+        window.location.href = url;
+    }
+    </script>
+</head>
+<body>
+    <h2>
+        YOUR FEEDBACK SUBMITTED SUCCESSFULLY...THANK YOU FOR SUBMITTING FEEDBACK
+    </h2>
+    <!--<center>   <button type="submit" class="btn btn-primary" name="command" value="submit" onclick="f1()">FINISH</button></center>-->
+
+    <script>
+
+    setTimeout(f1, 4000);
+
+    </script>
+</body>
+</html>
+

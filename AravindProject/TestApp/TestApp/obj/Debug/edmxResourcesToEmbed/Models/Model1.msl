@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ARAVIND_DBModelStoreContainer" CdmEntityContainer="ARAVIND_DBEntities">
+    <EntitySetMapping Name="System_Users">
+      <EntityTypeMapping TypeName="ARAVIND_DBModel.System_Users">
+        <MappingFragment StoreEntitySet="System_Users">
+          <ScalarProperty Name="New_Signup" ColumnName="New_Signup" />
+          <ScalarProperty Name="View_Results" ColumnName="View_Results" />
+          <ScalarProperty Name="Questions_Update" ColumnName="Questions_Update" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
